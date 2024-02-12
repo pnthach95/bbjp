@@ -1,0 +1,43 @@
+{
+  "cancel": "Cancel",
+  "codepush": {
+    "cancel": "Cancel",
+    "failed": "Update failed",
+    "message": "New update available, do you want to update?\n(During update, app will restart)",
+    "title": "Update",
+    "update": "Update",
+    "updating": "Updating. Please wait."
+  },
+  "confirm-user": "Confirm user",
+  "dark": "Dark",
+  "download": "Download",
+  "enable-locker": "Enable locker",
+  "lang": {
+    "en": "English",
+    "vi": "Tiếng Việt"
+  },
+  "language": "Language",
+  "light": "Light",
+  "no-internet": "No internet",
+  "reopen-app": "Reopen app",
+  "save-image": {
+    "error": "Error",
+    "error-detail": "App needs permission to save pictures",
+    "failed": "Failed",
+    "open-settings": "Open settings",
+    "success": "Success",
+    "title": "Save image"
+  },
+  "server-error": "Server error",
+  "session-expired": "Session is expired",
+  "status": "Status",
+  "tabs": {
+    "tab1": "Home",
+    "tab2": "Settings"
+  },
+  "theme": "Theme",
+  "undefined": "undefined",
+  "unexpected-error": "An unexpected error occurred",
+  "unknown": "Unknown",
+  "unlock": "Unlock"
+}

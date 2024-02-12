@@ -1,0 +1,43 @@
+{
+  "cancel": "Hủy bỏ",
+  "codepush": {
+    "cancel": "Bỏ qua",
+    "failed": "Cập nhật thất bại",
+    "message": "Có cập nhật nội dung mới, bạn có muốn cập nhật không?\n(Trong quá trình cập nhật, ứng dụng sẽ tự khởi động lại)",
+    "title": "Cập nhật",
+    "update": "Cập nhật",
+    "updating": "Đang cập nhật, vui lòng chờ."
+  },
+  "confirm-user": "Xác nhận người dùng",
+  "dark": "Tối",
+  "download": "Tải xuống",
+  "enable-locker": "Kích hoạt ổ khóa",
+  "lang": {
+    "en": "English",
+    "vi": "Tiếng Việt"
+  },
+  "language": "Ngôn ngữ",
+  "light": "Sáng",
+  "no-internet": "Không có mạng",
+  "reopen-app": "Mở lại app",
+  "save-image": {
+    "error": "Lỗi",
+    "error-detail": "Ứng dụng cần quyền truy cập để lưu hình ảnh",
+    "failed": "Thất bại",
+    "open-settings": "Mở cài đặt",
+    "success": "Thành công",
+    "title": "Lưu ảnh"
+  },
+  "server-error": "Máy chủ lỗi",
+  "session-expired": "Hết phiên đăng nhập",
+  "status": "Trạng thái",
+  "tabs": {
+    "tab1": "Trang chủ",
+    "tab2": "Cài đặt"
+  },
+  "theme": "Giao diện",
+  "undefined": "không xác định",
+  "unexpected-error": "Đã có lỗi xảy ra",
+  "unknown": "Không biết",
+  "unlock": "Mở khóa"
+}
