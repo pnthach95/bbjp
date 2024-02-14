@@ -12,6 +12,7 @@ const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
   const page = useRef(1);
   const isEndList = useRef(false);
   const [refreshing, setRefreshing] = useState(true);
+  const [loading, setLoading] = useState(true);
   useScrollToTop(postListRef);
 
   useEffect(() => {
@@ -20,6 +21,7 @@ const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
 
   const getData = async (p: number) => {
     try {
+      setLoading(true);
       const response = await API.get<string>(
         p === 1
           ? internalLink || LINKS.HOME
@@ -43,6 +45,7 @@ const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
       isEndList.current = true;
     } finally {
       setRefreshing(false);
+      setLoading(false);
     }
   };
 
@@ -54,7 +57,7 @@ const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
   };
 
   const onEndReached = () => {
-    if (!isEndList.current && !refreshing) {
+    if (!isEndList.current && !refreshing && !loading) {
       getData(page.current + 1);
       page.current += 1;
     }
@@ -62,6 +65,7 @@ const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
 
   return (
     <PostList
+      loading={loading}
       postListRef={postListRef}
       posts={posts}
       refreshing={refreshing}

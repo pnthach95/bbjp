@@ -3,7 +3,13 @@ import {useTranslation} from 'react-i18next';
 import {Platform, View} from 'react-native';
 import ContextMenu from 'react-native-context-menu-view';
 import FastImage from 'react-native-fast-image';
-import {ActivityIndicator, TouchableRipple, useTheme} from 'react-native-paper';
+import {
+  ActivityIndicator,
+  HelperText,
+  Text,
+  TouchableRipple,
+  useTheme,
+} from 'react-native-paper';
 import {onDownloadImage} from 'utils';
 import type {OnLoadEvent} from 'react-native-fast-image';
 
@@ -19,8 +25,9 @@ const noop = () => {
 const PostImg = ({item, onPress}: Props) => {
   const {t} = useTranslation();
   const {colors} = useTheme();
-  const [aspectRatio, setAspectRatio] = useState(1);
+  const [aspectRatio, setAspectRatio] = useState(4);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const filename = item.split('/').pop() || 'name.jpg';
 
   const onLoad = ({nativeEvent: {height, width}}: OnLoadEvent) => {
@@ -28,6 +35,17 @@ const PostImg = ({item, onPress}: Props) => {
   };
 
   const onLoadEnd = () => setLoading(false);
+
+  const onError = () => setError(true);
+
+  if (error) {
+    return (
+      <View className="items-center justify-center">
+        <HelperText type="error">{t('server-error')}</HelperText>
+        <Text>{item}</Text>
+      </View>
+    );
+  }
 
   return (
     <ContextMenu
@@ -54,6 +72,7 @@ const PostImg = ({item, onPress}: Props) => {
             className="h-full w-full"
             resizeMode="contain"
             source={{uri: item}}
+            onError={onError}
             onLoad={onLoad}
             onLoadEnd={onLoadEnd}
           />

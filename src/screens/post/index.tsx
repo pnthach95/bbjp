@@ -3,12 +3,16 @@ import InforBox from 'components/inforbox';
 import VSeparator from 'components/separator/v';
 import React, {useEffect, useState} from 'react';
 import {FlatList, View} from 'react-native';
+import {ActivityIndicator} from 'react-native-paper';
+import {useSafeAreaPaddingBottom} from 'utils/styles';
 import PostImg from './components/img';
 import type {ListRenderItem} from 'react-native';
 import type {RootStackScreenProps} from 'typings/navigation';
 
 const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
   const {post} = route.params;
+  const container = useSafeAreaPaddingBottom(12);
+  const [loading, setLoading] = useState(true);
   const [imgs, setImgs] = useState<string[]>([]);
 
   useEffect(() => {
@@ -17,6 +21,7 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
 
   const getData = async () => {
     if (post.link) {
+      setLoading(true);
       try {
         const response = await fetch(post.link);
         const res = await response.text();
@@ -34,6 +39,8 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
         setImgs(imgg);
       } catch (error) {
         //
+      } finally {
+        setLoading(false);
       }
     }
   };
@@ -50,12 +57,14 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
     return (
       <View className="mb-3">
         <InforBox post={post} />
+        {loading && <ActivityIndicator size="large" />}
       </View>
     );
   };
 
   return (
     <FlatList
+      contentContainerStyle={container}
       data={imgs}
       ItemSeparatorComponent={VSeparator}
       ListHeaderComponent={listHeader}

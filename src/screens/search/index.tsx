@@ -10,11 +10,13 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
   const [value, setValue] = useState('');
   const [posts, setPosts] = useState<TPost[]>([]);
   const [refreshing, setRefreshing] = useState(false);
+  const [loading, setLoading] = useState(false);
   const page = useRef(1);
   const isEndList = useRef(false);
 
   const getData = async (s: string, p: number) => {
     const link = p === 1 ? LINKS.HOME : LINKS.PAGE + `${p}/`;
+    setLoading(true);
     try {
       const response = await API.get<string>(link, {s});
       if (response.data) {
@@ -32,6 +34,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
       isEndList.current = true;
     } finally {
       setRefreshing(false);
+      setLoading(false);
     }
   };
 
@@ -45,7 +48,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
   };
 
   const onEndReached = () => {
-    if (!isEndList.current && !refreshing && value) {
+    if (!isEndList.current && !refreshing && value && !loading) {
       getData(value, page.current + 1);
       page.current += 1;
     }
@@ -65,6 +68,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
         </View>
       </Appbar.Header>
       <PostList
+        loading={loading}
         posts={posts}
         refreshing={refreshing}
         onEndReached={onEndReached}
