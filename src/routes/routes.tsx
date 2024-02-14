@@ -19,6 +19,7 @@ import HomeScreen from 'screens/home';
 import LockScreen from 'screens/lock';
 import PostScreen from 'screens/post';
 import SearchScreen from 'screens/search';
+import WebViewScreen from 'screens/webview';
 import {setLocker, useAppColorScheme, useLocker} from 'stores';
 import {navigationDarkTheme, navigationTheme, useAppTheme} from 'utils/themes';
 import type {RootStackParamList} from 'typings/navigation';
@@ -102,10 +103,31 @@ const Routes = () => {
           component={PostScreen}
           name="Post"
           options={({
+            navigation,
             route: {
               params: {
-                post: {title},
+                post: {title, link},
               },
+            },
+          }) => ({
+            title,
+            headerRight: link
+              ? () => {
+                  const onPress = () => {
+                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
+                    navigation.navigate('WebView', {uri: link, title});
+                  };
+                  return <IconButton icon="web" onPress={onPress} />;
+                }
+              : undefined,
+          })}
+        />
+        <RootStack.Screen
+          component={WebViewScreen}
+          name="WebView"
+          options={({
+            route: {
+              params: {title},
             },
           }) => ({title})}
         />
