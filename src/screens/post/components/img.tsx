@@ -69,6 +69,7 @@ const PostImg = ({item, onPress}: Props) => {
       <TouchableRipple onLongPress={noop} onPress={onPress}>
         <>
           <FastImage
+            key={(item.split('/').pop() || 'zz') + `${aspectRatio}`}
             className="h-full w-full"
             resizeMode="contain"
             source={{uri: item}}
