@@ -1,7 +1,6 @@
 import 'locales';
 import 'dayjs/locale/vi';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
-import CodePushUpdateProgress from 'components/codepush';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import duration from 'dayjs/plugin/duration';
@@ -33,20 +32,6 @@ const App = () => {
     appTheme = useAppColorScheme();
 
   useEffect(() => {
-    // const getBundleVersion = async () => {
-    //   try {
-    //     const metadata = await CodePush.getUpdateMetadata();
-    //     if (metadata && metadata.description) {
-    //       setBundleVersion(`${metadata.description.replace(/\s.*/, '')}`);
-    //     }
-    //   } catch (e) {
-    //     // console.log(e);
-    //   }
-    // };
-    // getBundleVersion();
-  }, []);
-
-  useEffect(() => {
     setColorScheme(appTheme);
   }, [appTheme]);
 
@@ -65,7 +50,6 @@ const App = () => {
           <BottomSheetModalProvider>
             <ErrorBoundary FallbackComponent={ErrorBoundaryScreen}>
               <Routes />
-              <CodePushUpdateProgress />
               <FlashMessage position="top" />
             </ErrorBoundary>
           </BottomSheetModalProvider>
