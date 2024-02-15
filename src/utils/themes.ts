@@ -76,7 +76,7 @@ const materialDark = {
     onError: 'rgb(105, 0, 5)',
     errorContainer: 'rgb(147, 0, 10)',
     onErrorContainer: 'rgb(255, 180, 171)',
-    background: 'rgb(32, 26, 27)',
+    background: 'black',
     onBackground: '#ece0e0',
     surface: 'rgb(32, 26, 27)',
     onSurface: 'rgb(236, 224, 224)',

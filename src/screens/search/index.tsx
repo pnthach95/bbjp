@@ -22,6 +22,7 @@ import {useSafeAreaPaddingBottom} from 'utils/styles';
 import type {
   ListRenderItem,
   NativeSyntheticEvent,
+  TextInput,
   TextInputSubmitEditingEventData,
 } from 'react-native';
 import type {RootStackScreenProps} from 'typings/navigation';
@@ -30,12 +31,14 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
   const searchKeywords = useSearchKeywords();
   const {t} = useTranslation();
   const {colors} = useTheme();
-  const container = useSafeAreaPaddingBottom(12);
+  const container = useSafeAreaPaddingBottom(0);
   const [value, setValue] = useState('');
   const [posts, setPosts] = useState<TPost[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
   const [keywordListVisible, setKeywordListVisible] = useState(true);
+  const searchRef = useRef<TextInput>(null);
+  const postListRef = useRef<FlatList>(null);
   const page = useRef(1);
   const isEndList = useRef(false);
   const backdrop = {backgroundColor: colors.backdrop};
@@ -53,6 +56,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
         }
         if (p === 1) {
           setPosts(res);
+          postListRef.current?.scrollToOffset({offset: 0, animated: false});
         } else {
           setPosts([...posts, ...res]);
         }
@@ -60,7 +64,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
         isEndList.current = true;
       }
     } catch (error) {
-      // console.log(error);
+      // console.error(error);
       isEndList.current = true;
     } finally {
       setRefreshing(false);
@@ -89,6 +93,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
     const onPressDelete = () => onDeleteSearchKeyword(index);
 
     const onPressItem = () => {
+      searchRef.current?.blur();
       onHideKeywordList();
       setValue(item);
       onSubmit(item);
@@ -133,6 +138,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
         <Appbar.BackAction onPress={navigation.goBack} />
         <View className="flex-1">
           <Searchbar
+            ref={searchRef}
             autoComplete="off"
             value={value}
             onBlur={onHideKeywordList}
@@ -146,6 +152,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
       <View className="flex-1">
         <PostList
           loading={loading}
+          postListRef={postListRef}
           posts={posts}
           refreshing={refreshing}
           onEndReached={onEndReached}
@@ -153,13 +160,15 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
         />
         {keywordListVisible && (
           <View
-            className="absolute bottom-0 left-0 right-0 top-0"
+            className="absolute bottom-0 left-0 right-0 top-0 z-40"
             style={backdrop}>
             <FlatList
               contentContainerStyle={container}
               data={searchKeywords}
+              keyboardShouldPersistTaps="always"
               ListHeaderComponent={listHeader}
               renderItem={renderSearchKeyword}
+              showsVerticalScrollIndicator={false}
             />
           </View>
         )}

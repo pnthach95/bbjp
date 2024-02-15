@@ -114,7 +114,7 @@ const PostList = ({
       ListHeaderComponent={
         !refreshing && !loading && posts.length === 0 ? (
           <View className="items-center justify-center">
-            <Icon color={colors.error} name="error" size={80} />
+            <Icon color={colors.error} name="error" size={70} />
             <Text>{t('not-found')}</Text>
           </View>
         ) : null
