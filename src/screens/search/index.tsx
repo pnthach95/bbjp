@@ -21,6 +21,9 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
       const response = await API.get<string>(link, {s});
       if (response.data) {
         const res = postParser(response.data);
+        if (res.length < 12) {
+          isEndList.current = true;
+        }
         if (p === 1) {
           setPosts(res);
         } else {

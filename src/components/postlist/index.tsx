@@ -85,7 +85,7 @@ const PostList = ({
                   };
 
                   return (
-                    <Chip key={c.name} compact onPress={onPressItem}>
+                    <Chip key={c.name + c.link} compact onPress={onPressItem}>
                       {c.name}
                     </Chip>
                   );

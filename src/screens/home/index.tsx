@@ -30,9 +30,10 @@ const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
       );
       if (response.data) {
         const parr = postParser(response.data);
-        if (parr.length === 0) {
+        if (parr.length < 12) {
           isEndList.current = true;
-        } else if (p === 1) {
+        }
+        if (p === 1) {
           setPosts(parr);
         } else {
           setPosts([...posts, ...parr]);
