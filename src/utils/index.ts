@@ -48,28 +48,31 @@ export const postParser = (html: string): TPost[] => {
         tags: [],
       };
       const h2a = v.querySelector('h2')?.querySelector('a');
-      const cats = v
-        .querySelector('div.entry-byline-cats')
-        ?.querySelectorAll('a');
-      const tags = v
-        .querySelector('div.entry-byline-tags')
-        ?.querySelectorAll('a');
+      const link = h2a?.getAttribute('href');
+      if (link) {
+        const cats = v
+          .querySelector('div.entry-byline-cats')
+          ?.querySelectorAll('a');
+        const tags = v
+          .querySelector('div.entry-byline-tags')
+          ?.querySelectorAll('a');
 
-      post.key = v.getAttribute('id');
-      post.link = h2a?.getAttribute('href');
-      post.title = h2a?.text() || '(no title)';
-      post.img = v
-        .querySelector('div.entry-featured-img-wrap')
-        ?.querySelector('img')
-        ?.getAttribute('src');
-      post.time = v.querySelector('time')?.text();
-      cats?.forEach(c => {
-        post.cats.push({link: c.getAttribute('href'), name: c.text()});
-      });
-      tags?.forEach(t => {
-        post.tags.push({link: t.getAttribute('href'), name: t.text()});
-      });
-      parr.push(post);
+        post.key = v.getAttribute('id');
+        post.link = link;
+        post.title = h2a?.text() || '(no title)';
+        post.img = v
+          .querySelector('div.entry-featured-img-wrap')
+          ?.querySelector('img')
+          ?.getAttribute('src');
+        post.time = v.querySelector('time')?.text();
+        cats?.forEach(c => {
+          post.cats.push({link: c.getAttribute('href'), name: c.text()});
+        });
+        tags?.forEach(t => {
+          post.tags.push({link: t.getAttribute('href'), name: t.text()});
+        });
+        parr.push(post);
+      }
     });
   } catch (error) {
     //

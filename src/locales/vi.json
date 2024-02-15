@@ -10,6 +10,7 @@
   },
   "confirm-user": "Xác nhận người dùng",
   "dark": "Tối",
+  "delete-all": "Xóa hết",
   "download": "Tải xuống",
   "enable-locker": "Kích hoạt ổ khóa",
   "lang": {
@@ -19,6 +20,7 @@
   "language": "Ngôn ngữ",
   "light": "Sáng",
   "no-internet": "Không có mạng",
+  "not-found": "Không tìm thấy",
   "reopen-app": "Mở lại app",
   "save-image": {
     "error": "Lỗi",

@@ -10,6 +10,7 @@
   },
   "confirm-user": "Confirm user",
   "dark": "Dark",
+  "delete-all": "Delete all",
   "download": "Download",
   "enable-locker": "Enable locker",
   "lang": {
@@ -19,6 +20,7 @@
   "language": "Language",
   "light": "Light",
   "no-internet": "No internet",
+  "not-found": "Not found",
   "reopen-app": "Reopen app",
   "save-image": {
     "error": "Error",

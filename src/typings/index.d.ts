@@ -7,6 +7,7 @@ type StoreState = {
   appTheme: 'dark' | 'light';
   appLanguage: TLanguage;
   locker: TLockerState;
+  searchKeywords: string[];
 };
 
 type TMetadata = {

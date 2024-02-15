@@ -1,5 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 import {FlatList, RefreshControl, View} from 'react-native';
 import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
@@ -10,6 +11,7 @@ import {
   TouchableRipple,
   useTheme,
 } from 'react-native-paper';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
 import type {ListRenderItem} from 'react-native';
 
@@ -36,6 +38,7 @@ const PostList = ({
   onEndReached,
   onRefresh,
 }: Props) => {
+  const {t} = useTranslation();
   const navigation = useNavigation();
   const {colors} = useTheme();
   const style = useSafeAreaPaddingBottom(12);
@@ -106,6 +109,14 @@ const PostList = ({
       ListFooterComponent={
         !refreshing && loading ? (
           <ActivityIndicator className="m-3" size="large" />
+        ) : null
+      }
+      ListHeaderComponent={
+        !refreshing && !loading && posts.length === 0 ? (
+          <View className="items-center justify-center">
+            <Icon color={colors.error} name="error" size={80} />
+            <Text>{t('not-found')}</Text>
+          </View>
         ) : null
       }
       refreshControl={RC}

@@ -22,6 +22,7 @@ const useAppStore = create<StoreState>()(
       appTheme: Appearance.getColorScheme() || 'light',
       appLanguage: getLanguage().split('-')[0] as TLanguage,
       locker: 'unavailable',
+      searchKeywords: [],
     }),
     {
       name: 'bbjp',
@@ -41,6 +42,7 @@ export const useAppColorScheme = () => useAppStore(s => s.appTheme);
 export const useBundleVersion = () => useAppStore(s => s.bundleVersion);
 export const useAppLanguage = () => useAppStore(s => s.appLanguage);
 export const useLocker = () => useAppStore(s => s.locker);
+export const useSearchKeywords = () => useAppStore(s => s.searchKeywords);
 
 export const setBundleVersion = (bundleVersion: string) => {
   useAppStore.setState({bundleVersion});
@@ -54,6 +56,30 @@ export const setAppLanguage = (appLanguage: TLanguage) => {
 
 export const setLocker = (locker: TLockerState) => {
   useAppStore.setState({locker});
+};
+
+export const onAddNewSearchKeyword = (keyword: string) => {
+  useAppStore.setState(
+    produce<StoreState>(draft => {
+      const idx = draft.searchKeywords.findIndex(v => v === keyword);
+      if (idx !== -1) {
+        draft.searchKeywords.splice(idx, 1);
+      }
+      draft.searchKeywords.unshift(keyword);
+    }),
+  );
+};
+
+export const onDeleteSearchKeyword = (idx: number) => {
+  useAppStore.setState(
+    produce<StoreState>(draft => {
+      draft.searchKeywords.splice(idx, 1);
+    }),
+  );
+};
+
+export const onDeleteAllSearchKeyword = () => {
+  useAppStore.setState({searchKeywords: []});
 };
 
 export const onSwitchTheme = () => {
