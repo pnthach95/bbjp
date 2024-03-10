@@ -3,7 +3,7 @@ import i18n from 'locales';
 import {showMessage} from 'react-native-flash-message';
 import type {ApiResponse} from 'apisauce';
 
-const baseURL = 'https://www.bigboobsjapan.com';
+const baseURL = 'https://www.tokyobombers.com';
 
 const API = create({baseURL});
 
