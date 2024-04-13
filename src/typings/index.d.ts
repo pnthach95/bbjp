@@ -2,10 +2,13 @@ type TLanguage = 'en' | 'vi';
 
 type TLockerState = 'lock' | 'unlock' | 'unavailable';
 
+type TBaseURL = 'https://tokyocafe.org' | 'https://www.tokyobombers.com';
+
 type StoreState = {
   bundleVersion: string;
   appTheme: 'dark' | 'light';
   appLanguage: TLanguage;
+  baseURL: TBaseURL;
   locker: TLockerState;
   searchKeywords: string[];
 };

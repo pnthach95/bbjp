@@ -2,11 +2,13 @@ import {useScrollToTop} from '@react-navigation/native';
 import API, {LINKS} from 'api';
 import PostList from 'components/postlist';
 import React, {useEffect, useRef, useState} from 'react';
+import {useBaseURL} from 'stores';
 import {postParser} from 'utils';
 import type {RootStackScreenProps} from 'typings/navigation';
 
 const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
   const internalLink = route.params?.metadata.link.split('.com/')[1];
+  const baseURL = useBaseURL();
   const postListRef = useRef(null);
   const [posts, setPosts] = useState<TPost[]>([]);
   const page = useRef(1);
@@ -16,8 +18,13 @@ const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
   useScrollToTop(postListRef);
 
   useEffect(() => {
-    getData(1);
-  }, []);
+    if (baseURL) {
+      API.setBaseURL(baseURL);
+      setTimeout(() => {
+        onRefresh();
+      }, 500);
+    }
+  }, [baseURL]);
 
   const getData = async (p: number) => {
     try {

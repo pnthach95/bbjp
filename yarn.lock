@@ -1191,10 +1191,10 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@baronha/ting@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@baronha/ting/-/ting-1.2.0.tgz#dfedca13141bd09d7f82167979e2dd38d7fecb4c"
-  integrity sha512-HquHM+KqMlYyl4GuVe4PZGyoSHbyLE63/xtR5JXAUnW/KmFIl3oKAa03XPEWyG3b5DtB/AMsFj2Z1Ahxzvh4sQ==
+"@baronha/ting@1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@baronha/ting/-/ting-1.1.0.tgz#b6575187eb5851abe60474b619c612aaa319476c"
+  integrity sha512-pWDZnON6zXPtrNf34TxuM0CawqZZR9YlGuP73ADJ+Hr20BVEn/i5+G2PCSdiUvv1vCc0QJYBSP26I8RZm70cMQ==
 
 "@bcoe/v8-coverage@^0.2.3":
   version "0.2.3"
@@ -7300,10 +7300,10 @@ react-native-safe-area-context@^4.9.0:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-4.9.0.tgz#21a570ca3594cb4259ba65f93befaa60d91bcbd0"
   integrity sha512-/OJD9Pb8IURyvn+1tWTszWPJqsbZ4hyHBU9P0xhOmk7h5owSuqL0zkfagU0pg7Vh0G2NKQkaPpUKUMMCUMDh/w==
 
-react-native-screenguard@^0.3.9:
-  version "0.3.9"
-  resolved "https://registry.yarnpkg.com/react-native-screenguard/-/react-native-screenguard-0.3.9.tgz#26cae11bf869aa0e15226ac017186df640691d18"
-  integrity sha512-JpUYeSkegQbJPzIrzbUughlOh4BGB1V5SsbLytdX93LzR/XiRwqKoJ4TlnEIlE5JQP0M906Ut8UFOfFcpr623A==
+react-native-screenguard@0.3.6:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/react-native-screenguard/-/react-native-screenguard-0.3.6.tgz#50c81376d7345045d98e0da93a2a2dd94f3c23b6"
+  integrity sha512-0oknwnSJilpWy8KsJx+H8gR9GamD2H2x/38GVjzhbt05b6FTLEHvKzGurTAT/RjvfR/1+2eq+UpNmJkajevZYA==
 
 react-native-screens@^3.30.1:
   version "3.30.1"

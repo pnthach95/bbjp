@@ -75,7 +75,7 @@ export const postParser = (html: string): TPost[] => {
       }
     });
   } catch (error) {
-    //
+    // console.log(error);
   }
   return parr;
 };

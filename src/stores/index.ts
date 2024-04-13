@@ -19,6 +19,7 @@ const useAppStore = create<StoreState>()(
   persist(
     _ => ({
       bundleVersion: '0',
+      baseURL: 'https://tokyocafe.org',
       appTheme: Appearance.getColorScheme() || 'light',
       appLanguage: getLanguage().split('-')[0] as TLanguage,
       locker: 'unavailable',
@@ -43,6 +44,7 @@ export const useBundleVersion = () => useAppStore(s => s.bundleVersion);
 export const useAppLanguage = () => useAppStore(s => s.appLanguage);
 export const useLocker = () => useAppStore(s => s.locker);
 export const useSearchKeywords = () => useAppStore(s => s.searchKeywords);
+export const useBaseURL = () => useAppStore(s => s.baseURL);
 
 export const setBundleVersion = (bundleVersion: string) => {
   useAppStore.setState({bundleVersion});
@@ -52,6 +54,10 @@ export const setAppLanguage = (appLanguage: TLanguage) => {
   useAppStore.setState({appLanguage});
   i18n.changeLanguage(appLanguage);
   dayjs.locale(appLanguage);
+};
+
+export const setBaseURL = (baseURL: TBaseURL) => {
+  useAppStore.setState({baseURL});
 };
 
 export const setLocker = (locker: TLockerState) => {

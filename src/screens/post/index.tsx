@@ -31,7 +31,10 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
         const contents = doc.documentElement.querySelectorAll('figure');
         const imgg: string[] = [];
         contents.forEach(c => {
-          const img = c.querySelector('a')?.getAttribute('href');
+          const img = c
+            ?.querySelector('a')
+            ?.querySelector('img')
+            ?.getAttribute('src');
           if (img) {
             imgg.push(img);
           }

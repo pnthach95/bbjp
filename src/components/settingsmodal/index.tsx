@@ -12,13 +12,21 @@ import React, {
 import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
-import {Switch, Text, TouchableRipple} from 'react-native-paper';
+import {
+  Button,
+  RadioButton,
+  Switch,
+  Text,
+  TouchableRipple,
+} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
   onSwitchTheme,
+  setBaseURL,
   setLocker,
   useAppColorScheme,
   useAppLanguage,
+  useBaseURL,
   useLocker,
 } from 'stores';
 import {useAppTheme} from 'utils/themes';
@@ -29,6 +37,11 @@ type SettingsModal = {
 
 const rnBiometrics = new ReactNativeBiometrics();
 
+const baseURLs: TBaseURL[] = [
+  'https://tokyocafe.org',
+  'https://www.tokyobombers.com',
+];
+
 const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
   const appTheme = useAppColorScheme();
   const {t} = useTranslation();
@@ -37,6 +50,8 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
   const [isSensorAvailable, setIsSensorAvailable] = useState(false);
   const modalRef = useRef<BottomSheetModal>(null);
   const languageRef = useRef<LanguageModal>(null);
+  const baseURL = useBaseURL();
+  const [url, setUrl] = useState(baseURL);
   const appLanguage = useAppLanguage();
   const insets = useSafeAreaInsets();
   const bottomInset = insets.bottom || 24;
@@ -66,6 +81,10 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
     }
   };
 
+  const onPressApply = () => {
+    setBaseURL(url);
+  };
+
   return (
     <>
       <BottomSheetModal
@@ -82,6 +101,19 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
             <Text className="px-3 pb-3" variant="titleLarge">
               {t('tabs.tab2')}
             </Text>
+            <Text className="p-3">Host</Text>
+            <RadioButton.Group
+              value={url}
+              onValueChange={v => setUrl(v as TBaseURL)}>
+              {baseURLs.map(b => (
+                <RadioButton.Item key={b} label={b} value={b} />
+              ))}
+            </RadioButton.Group>
+            <View className="p-3">
+              <Button mode="contained" onPress={onPressApply}>
+                {t('apply')}
+              </Button>
+            </View>
             <TouchableRipple onPress={onSwitchTheme}>
               <View className="flex-row justify-between p-3">
                 <Text>{t('theme')}</Text>

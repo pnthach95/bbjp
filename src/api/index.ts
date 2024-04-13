@@ -3,7 +3,7 @@ import i18n from 'locales';
 import {showMessage} from 'react-native-flash-message';
 import type {ApiResponse} from 'apisauce';
 
-const baseURL = 'https://www.tokyobombers.com';
+const baseURL = 'https://tokyocafe.org';
 
 const API = create({baseURL});
 

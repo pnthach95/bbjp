@@ -123,6 +123,7 @@ const PostList = ({
       renderItem={renderItem}
       showsVerticalScrollIndicator={false}
       onEndReached={onEndReached}
+      onEndReachedThreshold={0.4}
     />
   );
 };
