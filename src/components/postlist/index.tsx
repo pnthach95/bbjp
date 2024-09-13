@@ -1,8 +1,8 @@
+import {FasterImageView} from '@candlefinance/faster-image';
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {FlatList, RefreshControl, View} from 'react-native';
-import FastImage from 'react-native-fast-image';
 import LinearGradient from 'react-native-linear-gradient';
 import {
   ActivityIndicator,
@@ -62,7 +62,10 @@ const PostList = ({
     return (
       <TouchableRipple borderless onLongPress={noop} onPress={onPress}>
         <>
-          <FastImage className="aspect-[23/16]" source={{uri: item.img}} />
+          <FasterImageView
+            source={{url: item.img || ''}}
+            style={{aspectRatio: 23 / 16}}
+          />
           <View className="absolute bottom-0 left-0 right-0 top-0 justify-between">
             <LinearGradient
               className="p-3"

@@ -1,14 +1,13 @@
+import {FasterImageView} from '@candlefinance/faster-image';
 import {useIsFocused} from '@react-navigation/native';
 import React, {useCallback, useEffect, useRef, useState} from 'react';
-import {Platform, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import AwesomeGallery from 'react-native-awesome-gallery';
-import FastImage from 'react-native-fast-image';
 import {IconButton} from 'react-native-paper';
 import Animated, {FadeInUp, FadeOutUp} from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {useAppColorScheme} from 'stores';
 import {onDownloadImage} from 'utils';
-import {useAppTheme} from 'utils/themes';
 import type {GalleryRef, RenderItemInfo} from 'react-native-awesome-gallery';
 import type {RootStackScreenProps} from 'typings/navigation';
 
@@ -17,11 +16,10 @@ const renderItem = ({
   setImageDimensions,
 }: RenderItemInfo<{uri: string}>) => {
   return (
-    <FastImage
-      resizeMode={FastImage.resizeMode.contain}
-      source={{uri: item.uri}}
+    <FasterImageView
+      source={{url: item.uri, resizeMode: 'contain'}}
       style={StyleSheet.absoluteFillObject}
-      onLoad={e => {
+      onSuccess={e => {
         const {width, height} = e.nativeEvent;
         setImageDimensions({width, height});
       }}
@@ -34,7 +32,6 @@ const GalleryScreen = ({
   route,
 }: RootStackScreenProps<'Gallery'>) => {
   const {idx, images} = route.params;
-  const {colors} = useAppTheme();
   const appTheme = useAppColorScheme();
   const {top} = useSafeAreaInsets();
   const isFocused = useIsFocused();
@@ -47,10 +44,6 @@ const GalleryScreen = ({
       StatusBar.setBarStyle(
         appTheme === 'dark' ? 'light-content' : 'dark-content',
       );
-      if (Platform.OS === 'android') {
-        StatusBar.setTranslucent(false);
-        StatusBar.setBackgroundColor(colors.card);
-      }
     };
   }, []);
 
@@ -58,7 +51,6 @@ const GalleryScreen = ({
 
   useEffect(() => {
     StatusBar.setBarStyle(isFocused ? 'light-content' : 'dark-content', true);
-    Platform.OS === 'android' && StatusBar.setTranslucent(isFocused);
     if (!isFocused) {
       StatusBar.setHidden(false, 'fade');
     }

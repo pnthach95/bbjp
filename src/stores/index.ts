@@ -4,7 +4,6 @@ import i18n from 'locales';
 import {NativeWindStyleSheet} from 'nativewind';
 import {useEffect, useState} from 'react';
 import {Appearance} from 'react-native';
-import {getLanguage} from 'react-native-localization-settings';
 import {MMKVLoader} from 'react-native-mmkv-storage';
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
@@ -21,7 +20,7 @@ const useAppStore = create<StoreState>()(
       bundleVersion: '0',
       baseURL: 'https://tokyocafe.org',
       appTheme: Appearance.getColorScheme() || 'light',
-      appLanguage: getLanguage().split('-')[0] as TLanguage,
+      appLanguage: 'en',
       locker: 'unavailable',
       searchKeywords: [],
     }),

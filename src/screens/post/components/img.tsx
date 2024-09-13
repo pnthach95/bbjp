@@ -1,8 +1,8 @@
+import {FasterImageView} from '@candlefinance/faster-image';
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Platform, View} from 'react-native';
+import {Platform, StyleSheet, View} from 'react-native';
 import ContextMenu from 'react-native-context-menu-view';
-import FastImage from 'react-native-fast-image';
 import {
   ActivityIndicator,
   HelperText,
@@ -11,7 +11,7 @@ import {
   useTheme,
 } from 'react-native-paper';
 import {onDownloadImage} from 'utils';
-import type {OnLoadEvent} from 'react-native-fast-image';
+import type {FasterImageProps} from '@candlefinance/faster-image';
 
 type Props = {
   item: string;
@@ -22,6 +22,8 @@ const noop = () => {
   // fix long press
 };
 
+const styles = StyleSheet.create({img: {height: '100%', width: '100%'}});
+
 const PostImg = ({item, onPress}: Props) => {
   const {t} = useTranslation();
   const {colors} = useTheme();
@@ -30,11 +32,12 @@ const PostImg = ({item, onPress}: Props) => {
   const [error, setError] = useState(false);
   const filename = item.split('/').pop() || 'name.jpg';
 
-  const onLoad = ({nativeEvent: {height, width}}: OnLoadEvent) => {
+  const onLoad: FasterImageProps['onSuccess'] = ({
+    nativeEvent: {height, width},
+  }) => {
     setAspectRatio(width / height);
+    setLoading(false);
   };
-
-  const onLoadEnd = () => setLoading(false);
 
   const onError = () => setError(true);
 
@@ -56,7 +59,7 @@ const PostImg = ({item, onPress}: Props) => {
             Platform.OS === 'ios'
               ? 'square.and.arrow.down'
               : 'baseline_download',
-          systemIconColor: colors.onBackground,
+          iconColor: colors.onBackground,
         },
       ]}
       className="w-full"
@@ -68,14 +71,12 @@ const PostImg = ({item, onPress}: Props) => {
       }}>
       <TouchableRipple onLongPress={noop} onPress={onPress}>
         <>
-          <FastImage
+          <FasterImageView
             key={(item.split('/').pop() || 'zz') + `${aspectRatio}`}
-            className="h-full w-full"
-            resizeMode="contain"
-            source={{uri: item}}
+            source={{url: item, resizeMode: 'contain'}}
+            style={styles.img}
             onError={onError}
-            onLoad={onLoad}
-            onLoadEnd={onLoadEnd}
+            onSuccess={onLoad}
           />
           {loading && (
             <View className="absolute bottom-0 left-0 right-0 top-0 items-center justify-center">

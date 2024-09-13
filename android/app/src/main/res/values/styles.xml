@@ -7,4 +7,12 @@
     <item name="bootSplashLogo">@drawable/bootsplash_logo</item>
     <item name="postBootSplashTheme">@style/AppTheme</item>
   </style>
+  <style name="Theme.AppCompat.Translucent">
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:windowBackground">@android:color/transparent</item>
+    <item name="android:colorBackgroundCacheHint">@null</item>
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowAnimationStyle">@null</item>
+    <item name="android:windowSoftInputMode">adjustResize</item>
+  </style>
 </resources>

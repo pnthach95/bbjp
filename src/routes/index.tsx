@@ -22,7 +22,7 @@ import Routes from './routes';
 dayjs.extend(localizedFormat);
 dayjs.extend(duration);
 dayjs.extend(customParseFormat);
-ScreenGuardModule.register(null);
+ScreenGuardModule.registerWithBlurView({radius: 20});
 
 const App = () => {
   const {i18n} = useTranslation(),

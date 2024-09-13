@@ -4,6 +4,7 @@
     ".eslintrc.js",
     "index.js",
     "react-native.config.js",
+    "ReactotronConfig.js",
     "tailwind.config.js",
     "src/**/*"
   ],

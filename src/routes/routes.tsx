@@ -10,7 +10,7 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {AnimatePresence, MotiView} from 'moti';
 import React, {useEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Platform, StatusBar, View} from 'react-native';
+import {StatusBar, View} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import BootSplash from 'react-native-bootsplash';
 import {IconButton} from 'react-native-paper';
@@ -21,7 +21,7 @@ import PostScreen from 'screens/post';
 import SearchScreen from 'screens/search';
 import WebViewScreen from 'screens/webview';
 import {setLocker, useAppColorScheme, useLocker} from 'stores';
-import {navigationDarkTheme, navigationTheme, useAppTheme} from 'utils/themes';
+import {navigationDarkTheme, navigationTheme} from 'utils/themes';
 import type {RootStackParamList} from 'typings/navigation';
 
 dayjs.extend(localizedFormat);
@@ -33,8 +33,7 @@ const RootStack = createStackNavigator<RootStackParamList>();
 
 const Routes = () => {
   const appTheme = useAppColorScheme(),
-    {t} = useTranslation(),
-    {colors} = useAppTheme();
+    {t} = useTranslation();
   const locker = useLocker();
   const appState = useAppState();
   const settingsRef = useRef<SettingsModal>(null);
@@ -45,15 +44,6 @@ const Routes = () => {
       const {available} = resultObject;
       setIsSensorAvailable(available);
     });
-    /** Màu StatusBar không gán được trong lần đầu mở app,
-     *  setTimeout để fix
-     */
-    setTimeout(() => {
-      StatusBar.setBarStyle(
-        appTheme === 'dark' ? 'light-content' : 'dark-content',
-      );
-      Platform.OS === 'android' && StatusBar.setBackgroundColor(colors.card);
-    }, 500);
   }, []);
 
   useEffect(() => {
@@ -75,7 +65,8 @@ const Routes = () => {
       theme={appTheme === 'dark' ? navigationDarkTheme : navigationTheme}
       onReady={onReady}>
       <StatusBar
-        backgroundColor={colors.elevation.level2}
+        translucent
+        backgroundColor="transparent"
         barStyle={appTheme === 'dark' ? 'light-content' : 'dark-content'}
       />
       <RootStack.Navigator>

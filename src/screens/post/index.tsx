@@ -11,7 +11,7 @@ import type {RootStackScreenProps} from 'typings/navigation';
 
 const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
   const {post} = route.params;
-  const container = useSafeAreaPaddingBottom(12);
+  const container = useSafeAreaPaddingBottom(0);
   const [loading, setLoading] = useState(true);
   const [imgs, setImgs] = useState<string[]>([]);
 
@@ -26,7 +26,7 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
         const response = await fetch(post.link);
         const res = await response.text();
         const doc = IDOMParser.parse(res, {
-          ignoreTags: ['style', 'script', 'head'],
+          onlyBody: true,
         });
         const contents = doc.documentElement.querySelectorAll('figure');
         const imgg: string[] = [];
@@ -41,7 +41,7 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
         });
         setImgs(imgg);
       } catch (error) {
-        //
+        // console.log(error);
       } finally {
         setLoading(false);
       }
