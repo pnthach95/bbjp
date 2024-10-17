@@ -1,0 +1,16 @@
+diff --git a/android/src/main/java/com/rnbiometrics/ReactNativeBiometrics.java b/android/src/main/java/com/rnbiometrics/ReactNativeBiometrics.java
+index 624ecd947cc970139c9e6a74070cd41c13825dc5..50d187e8d45004355a85b88aec2b3d12dbb7d2cc 100644
+--- a/android/src/main/java/com/rnbiometrics/ReactNativeBiometrics.java
++++ b/android/src/main/java/com/rnbiometrics/ReactNativeBiometrics.java
+@@ -196,9 +196,9 @@ public class ReactNativeBiometrics extends ReactContextBaseJavaModule {
+ 
+     private int getAllowedAuthenticators(boolean allowDeviceCredentials) {
+         if (allowDeviceCredentials && !isCurrentSDK29OrEarlier()) {
+-            return BiometricManager.Authenticators.BIOMETRIC_STRONG | BiometricManager.Authenticators.DEVICE_CREDENTIAL;
++            return BiometricManager.Authenticators.BIOMETRIC_WEAK | BiometricManager.Authenticators.DEVICE_CREDENTIAL;
+         }
+-        return BiometricManager.Authenticators.BIOMETRIC_STRONG;
++        return BiometricManager.Authenticators.BIOMETRIC_WEAK;
+     }
+ 
+     private boolean isCurrentSDK29OrEarlier() {

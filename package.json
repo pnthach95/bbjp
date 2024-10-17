@@ -102,5 +102,8 @@
       "prettier --write"
     ]
   },
-  "packageManager": "yarn@3.6.4"
+  "packageManager": "yarn@3.6.4",
+  "resolutions": {
+    "react-native-biometrics@^3.0.1": "patch:react-native-biometrics@npm%3A3.0.1#./.yarn/patches/react-native-biometrics-npm-3.0.1-34e1156211.patch"
+  }
 }

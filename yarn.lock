@@ -10561,12 +10561,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-biometrics@npm:^3.0.1":
+"react-native-biometrics@npm:3.0.1":
   version: 3.0.1
   resolution: "react-native-biometrics@npm:3.0.1"
   peerDependencies:
     react-native: ">=0.60.0"
   checksum: 3864fea4bbf3dee1d360daf048e4f9980083c4e919e95082a5e4646e3b22475bb2b592cae18cccd7fb55b50498dca29e5346cf98d958646cbfc26fed5654bc53
+  languageName: node
+  linkType: hard
+
+"react-native-biometrics@patch:react-native-biometrics@npm%3A3.0.1#./.yarn/patches/react-native-biometrics-npm-3.0.1-34e1156211.patch::locator=bbjp%40workspace%3A.":
+  version: 3.0.1
+  resolution: "react-native-biometrics@patch:react-native-biometrics@npm%3A3.0.1#./.yarn/patches/react-native-biometrics-npm-3.0.1-34e1156211.patch::version=3.0.1&hash=1e6718&locator=bbjp%40workspace%3A."
+  peerDependencies:
+    react-native: ">=0.60.0"
+  checksum: cbaed381ec518a7ca9ca23494a41c2094d0db3ed60cb7e7d0ec543251517dddd557e68c590765600d18593cbb39f739a63d361f5a943f1d8d1eb16b0c2ab9476
   languageName: node
   linkType: hard
 
