@@ -58,6 +58,7 @@ const PostList = ({
   return (
     <LegendList
       ref={postListRef}
+      recycleItems
       contentContainerStyle={style}
       contentInsetAdjustmentBehavior="automatic"
       data={posts}

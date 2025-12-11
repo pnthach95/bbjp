@@ -18,12 +18,14 @@ const ErrorBoundaryScreen: ErrorBoundaryProps['FallbackComponent'] = ({
   };
 
   return (
-    <SafeAreaView className="flex-1 items-center justify-center space-y-3 bg-background p-3">
+    <SafeAreaView className="flex-1 items-center justify-center gap-3 bg-background p-3">
       <Icon color={colors.error} name="alert" size={100} />
       <Text className="text-center text-lg font-bold">
         {t('unexpected-error')}
       </Text>
-      <ScrollView>
+      <ScrollView
+        className="grow-0 rounded-xl border border-red-500"
+        contentContainerClassName="p-3">
         <Text>{error.toString()}</Text>
       </ScrollView>
       <Button mode="contained" onPress={restart}>

@@ -179,3 +179,20 @@ export const useFlatlistColumns = () => {
   }
   return 1;
 };
+
+export const useImageColumns = () => {
+  const {width} = useWindowDimensions();
+  if (width >= 1536) {
+    return 3;
+  }
+  if (width >= 1280) {
+    return 3;
+  }
+  if (width >= 1024) {
+    return 2;
+  }
+  if (width >= 768) {
+    return 2;
+  }
+  return 1;
+};

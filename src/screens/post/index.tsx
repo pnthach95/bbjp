@@ -2,16 +2,21 @@ import {LegendList, type LegendListRenderItemProps} from '@legendapp/list';
 import IDOMParser from 'advanced-html-parser';
 import InforBox from 'components/inforbox';
 import {ActivityIndicator} from 'components/paper';
-import VSeparator from 'components/separator/v';
 import {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
+import {useImageColumns} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
 import PostImg from './components/img';
 import type {RootStackScreenProps} from 'typings/navigation';
 
+const styles = StyleSheet.create({
+  columnWrapperStyle: {gap: 12},
+});
+
 const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
   const {post} = route.params;
   const container = useSafeAreaPaddingBottom(0);
+  const numColumns = useImageColumns();
   const [loading, setLoading] = useState(true);
   const [imgs, setImgs] = useState<string[]>([]);
 
@@ -67,10 +72,12 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
 
   return (
     <LegendList
+      recycleItems
+      columnWrapperStyle={styles.columnWrapperStyle}
       contentContainerStyle={container}
       data={imgs}
-      ItemSeparatorComponent={VSeparator}
       ListHeaderComponent={listHeader}
+      numColumns={numColumns}
       renderItem={renderItem}
       showsVerticalScrollIndicator={false}
     />
