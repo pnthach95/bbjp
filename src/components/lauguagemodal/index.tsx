@@ -24,9 +24,11 @@ const LanguageModal = forwardRef<LanguageModal>(({}, ref) => {
   const bottomInset = insets.bottom || 24;
   const columns = useFlatlistColumns();
   const backgroundStyle = {backgroundColor: colors.background};
+  const containerStyle: ViewStyle = {
+    marginHorizontal: columns > 1 ? width / 4 : bottomInset,
+  };
   const style: ViewStyle = {
-    marginHorizontal: bottomInset,
-    width: width / columns,
+    width: columns > 1 ? width / 2 : width - bottomInset * 2,
   };
 
   useImperativeHandle(ref, () => ({
@@ -50,8 +52,9 @@ const LanguageModal = forwardRef<LanguageModal>(({}, ref) => {
       backdropComponent={CustomBackdrop}
       backgroundStyle={backgroundStyle}
       bottomInset={bottomInset}
-      containerStyle={style}
-      handleComponent={CustomHandle}>
+      containerStyle={containerStyle}
+      handleComponent={CustomHandle}
+      style={style}>
       <BottomSheetView>
         <View className="m-3 gap-y-3 rounded-3xl p-3">
           <Text variant="titleLarge">{t('language')}</Text>

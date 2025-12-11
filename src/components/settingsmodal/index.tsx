@@ -10,7 +10,7 @@ import {
   useState,
 } from 'react';
 import {useTranslation} from 'react-i18next';
-import {View, useWindowDimensions} from 'react-native';
+import {View, type ViewStyle, useWindowDimensions} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
@@ -59,8 +59,13 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
   const bottomInset = insets.bottom || 24;
   const {width} = useWindowDimensions();
   const columns = useFlatlistColumns();
-  const style = {marginHorizontal: bottomInset, width: width / columns};
-  const backgroundStyle = {backgroundColor: colors.background};
+  const containerStyle: ViewStyle = {
+    marginHorizontal: columns > 1 ? width / 4 : bottomInset,
+  };
+  const style: ViewStyle = {
+    width: columns > 1 ? width / 2 : width - bottomInset * 2,
+  };
+  const backgroundStyle: ViewStyle = {backgroundColor: colors.background};
 
   useImperativeHandle(ref, () => ({
     open: () => modalRef.current?.present(),
@@ -98,8 +103,9 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
         backdropComponent={CustomBackdrop}
         backgroundStyle={backgroundStyle}
         bottomInset={bottomInset}
-        containerStyle={style}
-        handleComponent={CustomHandle}>
+        containerStyle={containerStyle}
+        handleComponent={CustomHandle}
+        style={style}>
         <BottomSheetView>
           <View className="m-1 rounded-3xl">
             <Text className="px-3 pb-3" variant="titleLarge">
