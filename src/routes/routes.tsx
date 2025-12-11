@@ -135,6 +135,8 @@ const Routes = () => {
 
             return {
               title,
+              headerBlurEffect: 'regular',
+              headerTransparent: true,
               headerRight: link
                 ? () => {
                     return <IconButton icon="web" onPress={onPress} />;

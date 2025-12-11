@@ -63,17 +63,15 @@ const PostList = ({
       contentInsetAdjustmentBehavior="automatic"
       data={posts}
       keyExtractor={({key}) => key}
+      ListEmptyComponent={
+        <View className="flex-1 items-center justify-center pt-5">
+          <MaterialDesignIcons color={colors.error} name="alert" size={70} />
+          <Text>{t('not-found')}</Text>
+        </View>
+      }
       ListFooterComponent={
         !refreshing && loading ? (
           <ActivityIndicator className="m-3" size="large" />
-        ) : null
-      }
-      ListHeaderComponent={
-        !refreshing && !loading && posts.length === 0 ? (
-          <View className="items-center justify-center">
-            <MaterialDesignIcons color={colors.error} name="alert" size={70} />
-            <Text>{t('not-found')}</Text>
-          </View>
         ) : null
       }
       numColumns={columns}
