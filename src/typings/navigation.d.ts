@@ -1,4 +1,4 @@
-import type {StackScreenProps} from '@react-navigation/stack';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 type RootStackParamList = {
   Main: {metadata: TMetadata} | undefined;
@@ -9,7 +9,7 @@ type RootStackParamList = {
 };
 
 type RootStackScreenProps<T extends keyof RootStackParamList> =
-  StackScreenProps<RootStackParamList, T>;
+  NativeStackScreenProps<RootStackParamList, T>;
 
 declare global {
   namespace ReactNavigation {

@@ -2195,6 +2195,7 @@ PODS:
     - ReactCommon/turbomodule/core
     - SocketRocket
     - Yoga
+  - react-native-vector-icons-material-design-icons (12.4.0)
   - react-native-webview (13.16.0):
     - boost
     - DoubleConversion
@@ -3226,6 +3227,7 @@ DEPENDENCIES:
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-screenguard (from `../node_modules/react-native-screenguard`)
   - react-native-turbo-image (from `../node_modules/react-native-turbo-image`)
+  - "react-native-vector-icons-material-design-icons (from `../node_modules/@react-native-vector-icons/material-design-icons`)"
   - react-native-webview (from `../node_modules/react-native-webview`)
   - React-NativeModulesApple (from `../node_modules/react-native/ReactCommon/react/nativemodule/core/platform/ios`)
   - React-networking (from `../node_modules/react-native/ReactCommon/react/networking`)
@@ -3393,6 +3395,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-screenguard"
   react-native-turbo-image:
     :path: "../node_modules/react-native-turbo-image"
+  react-native-vector-icons-material-design-icons:
+    :path: "../node_modules/@react-native-vector-icons/material-design-icons"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
   React-NativeModulesApple:
@@ -3542,6 +3546,7 @@ SPEC CHECKSUMS:
   react-native-safe-area-context: c00143b4823773bba23f2f19f85663ae89ceb460
   react-native-screenguard: 4cdef4ef526bba6728917e4d188b1e8083081953
   react-native-turbo-image: f7d10fc169f5efffd03b092a0eaf31a277f22c93
+  react-native-vector-icons-material-design-icons: 76cd460b3540b80527b4a80fb7f867f7deedb498
   react-native-webview: 654f794a7686b47491cf43aa67f7f428bea00eed
   React-NativeModulesApple: 1a378198515f8e825c5931a7613e98da69320cee
   React-networking: bfd1695ada5a57023006ce05823ac5391c3ce072

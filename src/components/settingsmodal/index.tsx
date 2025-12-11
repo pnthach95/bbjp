@@ -10,7 +10,7 @@ import {
   useState,
 } from 'react';
 import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
+import {View, useWindowDimensions} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
@@ -22,6 +22,7 @@ import {
   useBaseURL,
   useLocker,
 } from 'stores';
+import {useFlatlistColumns} from 'utils';
 import {useAppTheme} from 'utils/themes';
 import {
   Button,
@@ -56,7 +57,9 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
   const appLanguage = useAppLanguage();
   const insets = useSafeAreaInsets();
   const bottomInset = insets.bottom || 24;
-  const style = {marginHorizontal: bottomInset};
+  const {width} = useWindowDimensions();
+  const columns = useFlatlistColumns();
+  const style = {marginHorizontal: bottomInset, width: width / columns};
   const backgroundStyle = {backgroundColor: colors.background};
 
   useImperativeHandle(ref, () => ({
@@ -95,9 +98,9 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
         backdropComponent={CustomBackdrop}
         backgroundStyle={backgroundStyle}
         bottomInset={bottomInset}
-        handleComponent={CustomHandle}
-        style={style}>
-        <BottomSheetView className="w-full sm:w-1/2">
+        containerStyle={style}
+        handleComponent={CustomHandle}>
+        <BottomSheetView>
           <View className="m-1 rounded-3xl">
             <Text className="px-3 pb-3" variant="titleLarge">
               {t('tabs.tab2')}

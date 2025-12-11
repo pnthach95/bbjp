@@ -3,10 +3,11 @@ import CustomBackdrop from 'components/sheet/backdrop';
 import CustomHandle from 'components/sheet/handle';
 import {forwardRef, useImperativeHandle, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
+import {View, type ViewStyle, useWindowDimensions} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {setAppLanguage, useAppLanguage} from 'stores';
+import {useFlatlistColumns} from 'utils';
 import {Button, Text} from '../paper';
 
 type LanguageModal = {
@@ -18,10 +19,15 @@ const LanguageModal = forwardRef<LanguageModal>(({}, ref) => {
   const {colors} = useTheme();
   const appLanguage = useAppLanguage();
   const {t} = useTranslation();
+  const {width} = useWindowDimensions();
   const insets = useSafeAreaInsets();
   const bottomInset = insets.bottom || 24;
+  const columns = useFlatlistColumns();
   const backgroundStyle = {backgroundColor: colors.background};
-  const style = {marginHorizontal: bottomInset};
+  const style: ViewStyle = {
+    marginHorizontal: bottomInset,
+    width: width / columns,
+  };
 
   useImperativeHandle(ref, () => ({
     open: () => modalRef.current?.present(),
@@ -44,10 +50,10 @@ const LanguageModal = forwardRef<LanguageModal>(({}, ref) => {
       backdropComponent={CustomBackdrop}
       backgroundStyle={backgroundStyle}
       bottomInset={bottomInset}
-      handleComponent={CustomHandle}
-      style={style}>
+      containerStyle={style}
+      handleComponent={CustomHandle}>
       <BottomSheetView>
-        <View className="m-3 space-y-3 rounded-3xl p-3">
+        <View className="m-3 gap-y-3 rounded-3xl p-3">
           <Text variant="titleLarge">{t('language')}</Text>
           <Button
             mode={appLanguage === 'en' ? 'contained' : 'outlined'}

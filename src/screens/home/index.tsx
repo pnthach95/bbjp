@@ -7,8 +7,10 @@ import {postParser} from 'utils';
 import type {RootStackScreenProps} from 'typings/navigation';
 
 const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
-  const internalLink = route.params?.metadata.link.split('.com/')[1];
   const baseURL = useBaseURL();
+  const internalLink = route.params?.metadata.link
+    .replace(baseURL, '')
+    .replace('/', '');
   const postListRef = useRef(null);
   const [posts, setPosts] = useState<TPost[]>([]);
   const page = useRef(1);

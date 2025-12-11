@@ -1,8 +1,3 @@
-import {
-  LegendList,
-  type LegendListRef,
-  type LegendListRenderItemProps,
-} from '@legendapp/list';
 import API, {LINKS} from 'api';
 import {
   AppbarBackAction,
@@ -15,7 +10,7 @@ import {
 import PostList from 'components/postlist';
 import {useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {View} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import {
   onAddNewSearchKeyword,
@@ -25,7 +20,12 @@ import {
 } from 'stores';
 import {postParser} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
-import type {TextInput, TextInputSubmitEditingEvent} from 'react-native';
+import type {LegendListRef} from '@legendapp/list';
+import type {
+  ListRenderItem,
+  TextInput,
+  TextInputSubmitEditingEvent,
+} from 'react-native';
 import type {RootStackScreenProps} from 'typings/navigation';
 
 const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
@@ -90,10 +90,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
     }
   };
 
-  const renderSearchKeyword = ({
-    item,
-    index,
-  }: LegendListRenderItemProps<string>) => {
+  const renderSearchKeyword: ListRenderItem<string> = ({item, index}) => {
     const onPressDelete = () => onDeleteSearchKeyword(index);
 
     const onPressItem = () => {
@@ -166,7 +163,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
           <View
             className="absolute top-0 right-0 bottom-0 left-0 z-40"
             style={backdrop}>
-            <LegendList
+            <FlatList
               contentContainerStyle={container}
               data={searchKeywords}
               keyboardShouldPersistTaps="always"

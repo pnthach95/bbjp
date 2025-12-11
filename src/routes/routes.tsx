@@ -1,7 +1,7 @@
 import 'locales';
 import {useAppState} from '@react-native-community/hooks';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {IconButton} from 'components/paper';
 import SettingsModal from 'components/settingsmodal';
 import dayjs from 'dayjs';
@@ -11,7 +11,7 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {AnimatePresence, MotiView} from 'moti';
 import {useEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {StatusBar, View} from 'react-native';
+import {StatusBar} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import BootSplash from 'react-native-bootsplash';
 import GalleryScreen from 'screens/gallery';
@@ -29,7 +29,7 @@ dayjs.extend(duration);
 dayjs.extend(customParseFormat);
 
 const rnBiometrics = new ReactNativeBiometrics();
-const RootStack = createStackNavigator<RootStackParamList>();
+const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const Routes = () => {
   const appTheme = useAppColorScheme(),
@@ -73,20 +73,48 @@ const Routes = () => {
         <RootStack.Screen
           component={HomeScreen}
           name="Main"
-          options={({route: {params}, navigation}) => ({
-            title: params?.metadata.name || t('tabs.tab1'),
-            headerRight: () => {
-              const onPressSearch = () => navigation.navigate('Search');
-              const onPressSettings = () => settingsRef.current?.open();
+          options={({route: {params}, navigation}) => {
+            const onPressSearch = () => navigation.navigate('Search');
+            const onPressSettings = () => settingsRef.current?.open();
 
-              return (
-                <View className="flex-row">
-                  <IconButton icon="magnify" onPress={onPressSearch} />
-                  <IconButton icon="cog" onPress={onPressSettings} />
-                </View>
-              );
-            },
-          })}
+            return {
+              title: params?.metadata.name || t('tabs.tab1'),
+              headerBlurEffect: 'regular',
+              headerTransparent: true,
+              unstable_headerRightItems: ({tintColor}) => [
+                {
+                  type: 'button',
+                  tintColor,
+                  label: 'Search',
+                  onPress: onPressSearch,
+                  icon: {name: 'magnifyingglass', type: 'sfSymbol'},
+                },
+                {
+                  type: 'button',
+                  tintColor,
+                  label: 'Settings',
+                  onPress: onPressSettings,
+                  icon: {name: 'gearshape.fill', type: 'sfSymbol'},
+                },
+              ],
+              headerRight: ({tintColor}) => {
+                return (
+                  <>
+                    <IconButton
+                      icon="magnify"
+                      iconColor={tintColor}
+                      onPress={onPressSearch}
+                    />
+                    <IconButton
+                      icon="cog"
+                      iconColor={tintColor}
+                      onPress={onPressSettings}
+                    />
+                  </>
+                );
+              },
+            };
+          }}
         />
         <RootStack.Screen
           component={PostScreen}
