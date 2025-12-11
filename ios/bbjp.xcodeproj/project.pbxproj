@@ -7,77 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* bbjpTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* bbjpTests.m */; };
-		13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.mm */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
-		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 		927759DDE850357DA669E266 /* libPods-bbjp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EF79CE81DD9BF11D361065 /* libPods-bbjp.a */; };
-		A417637E29CD9E5300BD90B1 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417636E29CD9E5300BD90B1 /* Fontisto.ttf */; };
-		A417637F29CD9E5300BD90B1 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417636F29CD9E5300BD90B1 /* Octicons.ttf */; };
-		A417638029CD9E5300BD90B1 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637029CD9E5300BD90B1 /* Feather.ttf */; };
-		A417638129CD9E5300BD90B1 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637129CD9E5300BD90B1 /* Entypo.ttf */; };
-		A417638229CD9E5300BD90B1 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637229CD9E5300BD90B1 /* FontAwesome5_Brands.ttf */; };
-		A417638329CD9E5300BD90B1 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637329CD9E5300BD90B1 /* MaterialCommunityIcons.ttf */; };
-		A417638429CD9E5300BD90B1 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637429CD9E5300BD90B1 /* AntDesign.ttf */; };
-		A417638529CD9E5300BD90B1 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637529CD9E5300BD90B1 /* Foundation.ttf */; };
-		A417638629CD9E5300BD90B1 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637629CD9E5300BD90B1 /* Ionicons.ttf */; };
-		A417638729CD9E5300BD90B1 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637729CD9E5300BD90B1 /* FontAwesome5_Solid.ttf */; };
-		A417638829CD9E5300BD90B1 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637829CD9E5300BD90B1 /* FontAwesome5_Regular.ttf */; };
-		A417638929CD9E5300BD90B1 /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637929CD9E5300BD90B1 /* FontAwesome.ttf */; };
-		A417638A29CD9E5300BD90B1 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637A29CD9E5300BD90B1 /* Zocial.ttf */; };
-		A417638B29CD9E5300BD90B1 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637B29CD9E5300BD90B1 /* EvilIcons.ttf */; };
-		A417638C29CD9E5300BD90B1 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637C29CD9E5300BD90B1 /* SimpleLineIcons.ttf */; };
-		A417638D29CD9E5300BD90B1 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A417637D29CD9E5300BD90B1 /* MaterialIcons.ttf */; };
 		A417638F29CD9FF000BD90B1 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A417638E29CD9FF000BD90B1 /* BootSplash.storyboard */; };
 		A433FC3D2AF0D75800F18D82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A433FC3C2AF0D75800F18D82 /* Localizable.xcstrings */; };
 		A4BB8E182B79AD9C006C7EFC /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A4BB8E172B79AD9C006C7EFC /* InfoPlist.xcstrings */; };
 		BE36AAC48B10940980D177A4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EE875ED2C193A20F748CF450 /* PrivacyInfo.xcprivacy */; };
-		FD8A431BB2BECF423CCBC1FD /* libPods-bbjp-bbjpTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A43C289D2A443BD96F3F54D3 /* libPods-bbjp-bbjpTests.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = bbjp;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		00E356EE1AD99517003FC87E /* bbjpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bbjpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* bbjpTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = bbjpTests.m; sourceTree = "<group>"; };
-		038E78E7487B0C42E4ECAE2D /* Pods-bbjp-bbjpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bbjp-bbjpTests.release.xcconfig"; path = "Target Support Files/Pods-bbjp-bbjpTests/Pods-bbjp-bbjpTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* bbjp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bbjp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = bbjp/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = bbjp/AppDelegate.mm; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = bbjp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = bbjp/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = bbjp/main.m; sourceTree = "<group>"; };
-		26D1C4B95771ACD3FA5BEE24 /* Pods-bbjp-bbjpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bbjp-bbjpTests.debug.xcconfig"; path = "Target Support Files/Pods-bbjp-bbjpTests/Pods-bbjp-bbjpTests.debug.xcconfig"; sourceTree = "<group>"; };
 		444FB21F1E9CD113A8498114 /* Pods-bbjp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-bbjp.debug.xcconfig"; path = "Target Support Files/Pods-bbjp/Pods-bbjp.debug.xcconfig"; sourceTree = "<group>"; };
 		58EF79CE81DD9BF11D361065 /* libPods-bbjp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bbjp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A417636E29CD9E5300BD90B1 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
-		A417636F29CD9E5300BD90B1 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
-		A417637029CD9E5300BD90B1 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
-		A417637129CD9E5300BD90B1 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
-		A417637229CD9E5300BD90B1 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
-		A417637329CD9E5300BD90B1 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
-		A417637429CD9E5300BD90B1 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
-		A417637529CD9E5300BD90B1 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
-		A417637629CD9E5300BD90B1 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
-		A417637729CD9E5300BD90B1 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
-		A417637829CD9E5300BD90B1 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
-		A417637929CD9E5300BD90B1 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
-		A417637A29CD9E5300BD90B1 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
-		A417637B29CD9E5300BD90B1 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
-		A417637C29CD9E5300BD90B1 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
-		A417637D29CD9E5300BD90B1 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
+		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = RnDiffApp/AppDelegate.swift; sourceTree = "<group>"; };
 		A417638E29CD9FF000BD90B1 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = bbjp/BootSplash.storyboard; sourceTree = "<group>"; };
 		A433FC3C2AF0D75800F18D82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = bbjp/Localizable.xcstrings; sourceTree = "<group>"; };
-		A43C289D2A443BD96F3F54D3 /* libPods-bbjp-bbjpTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-bbjp-bbjpTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4BB8E172B79AD9C006C7EFC /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; name = InfoPlist.xcstrings; path = bbjp/InfoPlist.xcstrings; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EE875ED2C193A20F748CF450 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = bbjp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -85,14 +32,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		00E356EB1AD99517003FC87E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FD8A431BB2BECF423CCBC1FD /* libPods-bbjp-bbjpTests.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,32 +43,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* bbjpTests */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F21AD99517003FC87E /* bbjpTests.m */,
-				00E356F01AD99517003FC87E /* Supporting Files */,
-			);
-			path = bbjpTests;
-			sourceTree = "<group>";
-		};
-		00E356F01AD99517003FC87E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				00E356F11AD99517003FC87E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* bbjp */ = {
 			isa = PBXGroup;
 			children = (
-				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
-				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				A417638E29CD9FF000BD90B1 /* BootSplash.storyboard */,
-				13B07FB71A68108700A75B9A /* main.m */,
 				A433FC3C2AF0D75800F18D82 /* Localizable.xcstrings */,
 				A4BB8E172B79AD9C006C7EFC /* InfoPlist.xcstrings */,
 				EE875ED2C193A20F748CF450 /* PrivacyInfo.xcprivacy */,
@@ -142,7 +62,6 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				58EF79CE81DD9BF11D361065 /* libPods-bbjp.a */,
-				A43C289D2A443BD96F3F54D3 /* libPods-bbjp-bbjpTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -158,9 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				13B07FAE1A68108700A75B9A /* bbjp */,
-				A417636D29CD9E5300BD90B1 /* Fonts */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* bbjpTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
@@ -174,33 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				13B07F961A680F5B00A75B9A /* bbjp.app */,
-				00E356EE1AD99517003FC87E /* bbjpTests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		A417636D29CD9E5300BD90B1 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				A417636E29CD9E5300BD90B1 /* Fontisto.ttf */,
-				A417636F29CD9E5300BD90B1 /* Octicons.ttf */,
-				A417637029CD9E5300BD90B1 /* Feather.ttf */,
-				A417637129CD9E5300BD90B1 /* Entypo.ttf */,
-				A417637229CD9E5300BD90B1 /* FontAwesome5_Brands.ttf */,
-				A417637329CD9E5300BD90B1 /* MaterialCommunityIcons.ttf */,
-				A417637429CD9E5300BD90B1 /* AntDesign.ttf */,
-				A417637529CD9E5300BD90B1 /* Foundation.ttf */,
-				A417637629CD9E5300BD90B1 /* Ionicons.ttf */,
-				A417637729CD9E5300BD90B1 /* FontAwesome5_Solid.ttf */,
-				A417637829CD9E5300BD90B1 /* FontAwesome5_Regular.ttf */,
-				A417637929CD9E5300BD90B1 /* FontAwesome.ttf */,
-				A417637A29CD9E5300BD90B1 /* Zocial.ttf */,
-				A417637B29CD9E5300BD90B1 /* EvilIcons.ttf */,
-				A417637C29CD9E5300BD90B1 /* SimpleLineIcons.ttf */,
-				A417637D29CD9E5300BD90B1 /* MaterialIcons.ttf */,
-			);
-			name = Fonts;
-			path = "../node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -208,8 +100,6 @@
 			children = (
 				444FB21F1E9CD113A8498114 /* Pods-bbjp.debug.xcconfig */,
 				FB9997D1F8E180EE2D2377AE /* Pods-bbjp.release.xcconfig */,
-				26D1C4B95771ACD3FA5BEE24 /* Pods-bbjp-bbjpTests.debug.xcconfig */,
-				038E78E7487B0C42E4ECAE2D /* Pods-bbjp-bbjpTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -217,27 +107,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* bbjpTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "bbjpTests" */;
-			buildPhases = (
-				86040DE594176A51B00264D2 /* [CP] Check Pods Manifest.lock */,
-				00E356EA1AD99517003FC87E /* Sources */,
-				00E356EB1AD99517003FC87E /* Frameworks */,
-				00E356EC1AD99517003FC87E /* Resources */,
-				E82895945560DA188457CE97 /* [CP] Embed Pods Frameworks */,
-				0F614E716172850ACFA34052 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				00E356F51AD99517003FC87E /* PBXTargetDependency */,
-			);
-			name = bbjpTests;
-			productName = bbjpTests;
-			productReference = 00E356EE1AD99517003FC87E /* bbjpTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		13B07F861A680F5B00A75B9A /* bbjp */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "bbjp" */;
@@ -267,10 +136,6 @@
 			attributes = {
 				LastUpgradeCheck = 1210;
 				TargetAttributes = {
-					00E356ED1AD99517003FC87E = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = 13B07F861A680F5B00A75B9A;
-					};
 					13B07F861A680F5B00A75B9A = {
 						LastSwiftMigration = 1120;
 					};
@@ -291,42 +156,18 @@
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* bbjp */,
-				00E356ED1AD99517003FC87E /* bbjpTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		00E356EC1AD99517003FC87E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F8E1A680F5B00A75B9A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A417637E29CD9E5300BD90B1 /* Fontisto.ttf in Resources */,
-				A417638929CD9E5300BD90B1 /* FontAwesome.ttf in Resources */,
-				A417638529CD9E5300BD90B1 /* Foundation.ttf in Resources */,
 				A417638F29CD9FF000BD90B1 /* BootSplash.storyboard in Resources */,
-				A417638829CD9E5300BD90B1 /* FontAwesome5_Regular.ttf in Resources */,
-				A417638629CD9E5300BD90B1 /* Ionicons.ttf in Resources */,
 				A4BB8E182B79AD9C006C7EFC /* InfoPlist.xcstrings in Resources */,
-				A417638B29CD9E5300BD90B1 /* EvilIcons.ttf in Resources */,
-				A417638129CD9E5300BD90B1 /* Entypo.ttf in Resources */,
-				A417638A29CD9E5300BD90B1 /* Zocial.ttf in Resources */,
-				A417638C29CD9E5300BD90B1 /* SimpleLineIcons.ttf in Resources */,
-				A417638029CD9E5300BD90B1 /* Feather.ttf in Resources */,
-				A417637F29CD9E5300BD90B1 /* Octicons.ttf in Resources */,
-				A417638229CD9E5300BD90B1 /* FontAwesome5_Brands.ttf in Resources */,
-				A417638429CD9E5300BD90B1 /* AntDesign.ttf in Resources */,
-				A417638D29CD9E5300BD90B1 /* MaterialIcons.ttf in Resources */,
 				A433FC3D2AF0D75800F18D82 /* Localizable.xcstrings in Resources */,
-				A417638729CD9E5300BD90B1 /* FontAwesome5_Solid.ttf in Resources */,
-				A417638329CD9E5300BD90B1 /* MaterialCommunityIcons.ttf in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				BE36AAC48B10940980D177A4 /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -349,24 +190,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
-		};
-		0F614E716172850ACFA34052 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bbjp-bbjpTests/Pods-bbjp-bbjpTests-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bbjp-bbjpTests/Pods-bbjp-bbjpTests-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bbjp-bbjpTests/Pods-bbjp-bbjpTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"$REACT_NATIVE_PATH/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"$REACT_NATIVE_PATH/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"\\\"$WITH_ENVIRONMENT\\\" \\\"$REACT_NATIVE_XCODE\\\"\"\n";
 		};
 		5C843BBA73C6B7E4C3067CA5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -407,28 +231,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bbjp/Pods-bbjp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		86040DE594176A51B00264D2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-bbjp-bbjpTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		9532C4BADB42825FDB98CFE1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -446,105 +248,20 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bbjp/Pods-bbjp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E82895945560DA188457CE97 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bbjp-bbjpTests/Pods-bbjp-bbjpTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-bbjp-bbjpTests/Pods-bbjp-bbjpTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-bbjp-bbjpTests/Pods-bbjp-bbjpTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		00E356EA1AD99517003FC87E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				00E356F31AD99517003FC87E /* bbjpTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		13B07F871A680F5B00A75B9A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
-				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* bbjp */;
-			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		00E356F61AD99517003FC87E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26D1C4B95771ACD3FA5BEE24 /* Pods-bbjp-bbjpTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = bbjpTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier:lower).dev";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bbjp.app/bbjp";
-			};
-			name = Debug;
-		};
-		00E356F71AD99517003FC87E /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 038E78E7487B0C42E4ECAE2D /* Pods-bbjp-bbjpTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = bbjpTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lc++",
-					"$(inherited)",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.$(PRODUCT_NAME:rfc1034identifier:lower)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/bbjp.app/bbjp";
-			};
-			name = Release;
-		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 444FB21F1E9CD113A8498114 /* Pods-bbjp.debug.xcconfig */;
@@ -554,7 +271,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = bbjp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -581,7 +298,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = bbjp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -651,7 +368,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD = "";
 				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -730,7 +447,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD = "";
 				LDPLUSPLUS = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -763,15 +480,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "bbjpTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				00E356F61AD99517003FC87E /* Debug */,
-				00E356F71AD99517003FC87E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "bbjp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

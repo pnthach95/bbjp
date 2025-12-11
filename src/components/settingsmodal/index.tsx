@@ -2,7 +2,7 @@ import {BottomSheetModal, BottomSheetView} from '@gorhom/bottom-sheet';
 import LanguageModal from 'components/lauguagemodal';
 import CustomBackdrop from 'components/sheet/backdrop';
 import CustomHandle from 'components/sheet/handle';
-import React, {
+import {
   forwardRef,
   useEffect,
   useImperativeHandle,
@@ -12,13 +12,6 @@ import React, {
 import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
-import {
-  Button,
-  RadioButton,
-  Switch,
-  Text,
-  TouchableRipple,
-} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
   onSwitchTheme,
@@ -30,6 +23,14 @@ import {
   useLocker,
 } from 'stores';
 import {useAppTheme} from 'utils/themes';
+import {
+  Button,
+  RadioButtonGroup,
+  RadioButtonItem,
+  Switch,
+  Text,
+  TouchableRipple,
+} from '../paper';
 
 type SettingsModal = {
   open: () => void;
@@ -96,19 +97,19 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
         bottomInset={bottomInset}
         handleComponent={CustomHandle}
         style={style}>
-        <BottomSheetView>
+        <BottomSheetView className="w-full sm:w-1/2">
           <View className="m-1 rounded-3xl">
             <Text className="px-3 pb-3" variant="titleLarge">
               {t('tabs.tab2')}
             </Text>
             <Text className="p-3">Host</Text>
-            <RadioButton.Group
+            <RadioButtonGroup
               value={url}
               onValueChange={v => setUrl(v as TBaseURL)}>
               {baseURLs.map(b => (
-                <RadioButton.Item key={b} label={b} value={b} />
+                <RadioButtonItem key={b} label={b} value={b} />
               ))}
-            </RadioButton.Group>
+            </RadioButtonGroup>
             <View className="p-3">
               <Button mode="contained" onPress={onPressApply}>
                 {t('apply')}

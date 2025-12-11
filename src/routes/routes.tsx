@@ -2,18 +2,18 @@ import 'locales';
 import {useAppState} from '@react-native-community/hooks';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {IconButton} from 'components/paper';
 import SettingsModal from 'components/settingsmodal';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import duration from 'dayjs/plugin/duration';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {AnimatePresence, MotiView} from 'moti';
-import React, {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StatusBar, View} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import BootSplash from 'react-native-bootsplash';
-import {IconButton} from 'react-native-paper';
 import GalleryScreen from 'screens/gallery';
 import HomeScreen from 'screens/home';
 import LockScreen from 'screens/lock';
@@ -76,8 +76,6 @@ const Routes = () => {
           options={({route: {params}, navigation}) => ({
             title: params?.metadata.name || t('tabs.tab1'),
             headerRight: () => {
-              // @ts-ignore
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-return, @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
               const onPressSearch = () => navigation.navigate('Search');
               const onPressSettings = () => settingsRef.current?.open();
 
@@ -105,7 +103,6 @@ const Routes = () => {
             headerRight: link
               ? () => {
                   const onPress = () => {
-                    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
                     navigation.navigate('WebView', {uri: link, title});
                   };
                   return <IconButton icon="web" onPress={onPress} />;
@@ -138,7 +135,7 @@ const Routes = () => {
         {isSensorAvailable && locker === 'lock' && (
           <MotiView
             animate={{opacity: 1}}
-            className="absolute bottom-0 left-0 right-0 top-0"
+            className="absolute top-0 right-0 bottom-0 left-0"
             exit={{opacity: 0}}
             from={{opacity: 1}}
             transition={{type: 'timing', duration: 500}}>

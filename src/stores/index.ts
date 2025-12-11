@@ -1,7 +1,6 @@
 import dayjs from 'dayjs';
 import {produce} from 'immer';
 import i18n from 'locales';
-import {NativeWindStyleSheet} from 'nativewind';
 import {useEffect, useState} from 'react';
 import {Appearance} from 'react-native';
 import {MMKVLoader} from 'react-native-mmkv-storage';
@@ -92,7 +91,6 @@ export const onSwitchTheme = () => {
     produce<StoreState>(draft => {
       const newColor = draft.appTheme === 'dark' ? 'light' : 'dark';
       draft.appTheme = newColor;
-      NativeWindStyleSheet.setColorScheme(newColor);
     }),
   );
 };

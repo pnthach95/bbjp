@@ -2,7 +2,7 @@ import {alert} from '@baronha/ting';
 import {CameraRoll} from '@react-native-camera-roll/camera-roll';
 import IDOMParser from 'advanced-html-parser';
 import i18n from 'locales';
-import {Alert, Linking, Platform} from 'react-native';
+import {Alert, Linking, Platform, useWindowDimensions} from 'react-native';
 import BlobUtil from 'react-native-blob-util';
 import {showMessage} from 'react-native-flash-message';
 import {PERMISSIONS, RESULTS, check, request} from 'react-native-permissions';
@@ -25,7 +25,9 @@ export function capitalizeFirstLetter(string: string) {
 
 export const openLink = (link?: string) => {
   try {
-    link && Linking.openURL(link);
+    if (link) {
+      Linking.openURL(link);
+    }
   } catch (error) {
     if (error instanceof Error) {
       showMessage({message: error.message, type: 'warning'});
@@ -74,7 +76,7 @@ export const postParser = (html: string): TPost[] => {
         parr.push(post);
       }
     });
-  } catch (error) {
+  } catch {
     // console.log(error);
   }
   return parr;
@@ -159,4 +161,21 @@ export const onDownloadImage = async (
       }
     }
   }
+};
+
+export const useFlatlistColumns = () => {
+  const {width} = useWindowDimensions();
+  if (width >= 1536) {
+    return 5;
+  }
+  if (width >= 1280) {
+    return 4;
+  }
+  if (width >= 1024) {
+    return 3;
+  }
+  if (width >= 768) {
+    return 2;
+  }
+  return 1;
 };

@@ -1,11 +1,11 @@
-import {FasterImageView} from '@candlefinance/faster-image';
 import {useIsFocused} from '@react-navigation/native';
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {IconButton} from 'components/paper';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import {StatusBar, StyleSheet, Text, View} from 'react-native';
 import AwesomeGallery from 'react-native-awesome-gallery';
-import {IconButton} from 'react-native-paper';
 import Animated, {FadeInUp, FadeOutUp} from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import Image from 'react-native-turbo-image';
 import {useAppColorScheme} from 'stores';
 import {onDownloadImage} from 'utils';
 import type {GalleryRef, RenderItemInfo} from 'react-native-awesome-gallery';
@@ -16,9 +16,10 @@ const renderItem = ({
   setImageDimensions,
 }: RenderItemInfo<{uri: string}>) => {
   return (
-    <FasterImageView
-      source={{url: item.uri, resizeMode: 'contain'}}
-      style={StyleSheet.absoluteFillObject}
+    <Image
+      resizeMode="contain"
+      source={{uri: item.uri}}
+      style={StyleSheet.absoluteFill}
       onSuccess={e => {
         const {width, height} = e.nativeEvent;
         setImageDimensions({width, height});
@@ -58,7 +59,9 @@ const GalleryScreen = ({
 
   const onIndexChange = useCallback(
     (index: number) => {
-      isFocused && navigation.setParams({idx: index});
+      if (isFocused) {
+        navigation.setParams({idx: index});
+      }
     },
     [isFocused],
   );

@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import {Button} from 'components/paper';
+import {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
-import {Button} from 'react-native-paper';
 import {setLocker} from 'stores';
 
 const rnBiometrics = new ReactNativeBiometrics();
@@ -24,13 +24,13 @@ const LockScreen = () => {
       if (success) {
         setLocker('unlock');
       }
-    } catch (error) {
+    } catch {
       //
     }
   };
 
   return (
-    <View className="absolute bottom-0 left-0 right-0 top-0 z-50 items-center justify-center bg-white dark:bg-black">
+    <View className="absolute top-0 right-0 bottom-0 left-0 z-50 items-center justify-center bg-white dark:bg-black">
       <Button onPress={onUnlock}>{t('unlock')}</Button>
     </View>
   );

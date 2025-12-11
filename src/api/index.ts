@@ -7,33 +7,6 @@ const baseURL = 'https://tokyocafe.org';
 
 const API = create({baseURL});
 
-API.axiosInstance.interceptors.response.use(
-  // Any status codes that lie within the range of 2xx (default), or do pass custom `validateStatus()` cause this function to trigger
-  function (response) {
-    const params = Object.entries(
-      response.config.params as Record<string, string>,
-    );
-    const paramsString: string[] = [];
-    params.forEach(p => {
-      paramsString.push(p[0] + '=' + p[1].replaceAll(' ', '+'));
-    });
-    const url =
-      (response.config.baseURL || '') +
-      '/' +
-      (response.config.url || '') +
-      (paramsString.length > 0 ? '?' + paramsString.join('&') : '');
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    const responseURL = response.request?.responseURL as string;
-    // console.log(url, responseURL);
-
-    if (url !== responseURL) {
-      throw new Error('NO_REDIRECT');
-    } else {
-      return response;
-    }
-  },
-);
-
 API.addMonitor((response: ApiResponse<string>) => {
   // console.log(JSON.stringify(response, null, 2));
   if (response.config?.url && [LINKS.PAGE].includes(response.config.url)) {

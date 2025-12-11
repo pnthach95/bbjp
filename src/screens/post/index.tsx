@@ -1,12 +1,12 @@
+import {LegendList, type LegendListRenderItemProps} from '@legendapp/list';
 import IDOMParser from 'advanced-html-parser';
 import InforBox from 'components/inforbox';
+import {ActivityIndicator} from 'components/paper';
 import VSeparator from 'components/separator/v';
-import React, {useEffect, useState} from 'react';
-import {FlatList, View} from 'react-native';
-import {ActivityIndicator} from 'react-native-paper';
+import {useEffect, useState} from 'react';
+import {View} from 'react-native';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
 import PostImg from './components/img';
-import type {ListRenderItem} from 'react-native';
 import type {RootStackScreenProps} from 'typings/navigation';
 
 const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
@@ -40,7 +40,7 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
           }
         });
         setImgs(imgg);
-      } catch (error) {
+      } catch {
         // console.log(error);
       } finally {
         setLoading(false);
@@ -48,7 +48,7 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
     }
   };
 
-  const renderItem: ListRenderItem<string> = ({item, index}) => {
+  const renderItem = ({item, index}: LegendListRenderItemProps<string>) => {
     const onPress = () => {
       navigation.navigate('Gallery', {idx: index, images: imgs});
     };
@@ -66,7 +66,7 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
   };
 
   return (
-    <FlatList
+    <LegendList
       contentContainerStyle={container}
       data={imgs}
       ItemSeparatorComponent={VSeparator}

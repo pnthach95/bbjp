@@ -1,12 +1,13 @@
 import {BottomSheetModal, BottomSheetView} from '@gorhom/bottom-sheet';
 import CustomBackdrop from 'components/sheet/backdrop';
 import CustomHandle from 'components/sheet/handle';
-import React, {forwardRef, useImperativeHandle, useRef} from 'react';
+import {forwardRef, useImperativeHandle, useRef} from 'react';
 import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
-import {Button, Text, useTheme} from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {setAppLanguage, useAppLanguage} from 'stores';
+import {Button, Text} from '../paper';
 
 type LanguageModal = {
   open: () => void;

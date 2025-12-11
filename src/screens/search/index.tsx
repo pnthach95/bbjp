@@ -1,16 +1,22 @@
-import API, {LINKS} from 'api';
-import PostList from 'components/postlist';
-import React, {useRef, useState} from 'react';
-import {useTranslation} from 'react-i18next';
-import {FlatList, View} from 'react-native';
 import {
-  Appbar,
+  LegendList,
+  type LegendListRef,
+  type LegendListRenderItemProps,
+} from '@legendapp/list';
+import API, {LINKS} from 'api';
+import {
+  AppbarBackAction,
+  AppbarHeader,
   IconButton,
   Searchbar,
   Text,
   TouchableRipple,
-  useTheme,
-} from 'react-native-paper';
+} from 'components/paper';
+import PostList from 'components/postlist';
+import {useRef, useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {View} from 'react-native';
+import {useTheme} from 'react-native-paper';
 import {
   onAddNewSearchKeyword,
   onDeleteAllSearchKeyword,
@@ -19,12 +25,7 @@ import {
 } from 'stores';
 import {postParser} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
-import type {
-  ListRenderItem,
-  NativeSyntheticEvent,
-  TextInput,
-  TextInputSubmitEditingEventData,
-} from 'react-native';
+import type {TextInput, TextInputSubmitEditingEvent} from 'react-native';
 import type {RootStackScreenProps} from 'typings/navigation';
 
 const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
@@ -38,7 +39,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
   const [loading, setLoading] = useState(false);
   const [keywordListVisible, setKeywordListVisible] = useState(true);
   const searchRef = useRef<TextInput>(null);
-  const postListRef = useRef<FlatList>(null);
+  const postListRef = useRef<LegendListRef>(null);
   const page = useRef(1);
   const isEndList = useRef(false);
   const backdrop = {backgroundColor: colors.backdrop};
@@ -63,7 +64,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
       } else {
         isEndList.current = true;
       }
-    } catch (error) {
+    } catch {
       // console.error(error);
       isEndList.current = true;
     } finally {
@@ -89,7 +90,10 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
     }
   };
 
-  const renderSearchKeyword: ListRenderItem<string> = ({item, index}) => {
+  const renderSearchKeyword = ({
+    item,
+    index,
+  }: LegendListRenderItemProps<string>) => {
     const onPressDelete = () => onDeleteSearchKeyword(index);
 
     const onPressItem = () => {
@@ -127,15 +131,15 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
 
   const onSubmitEditing = ({
     nativeEvent: {text},
-  }: NativeSyntheticEvent<TextInputSubmitEditingEventData>) => onSubmit(text);
+  }: TextInputSubmitEditingEvent) => onSubmit(text);
 
   const onShowKeywordList = () => setKeywordListVisible(true);
   const onHideKeywordList = () => setKeywordListVisible(false);
 
   return (
     <>
-      <Appbar.Header>
-        <Appbar.BackAction onPress={navigation.goBack} />
+      <AppbarHeader>
+        <AppbarBackAction onPress={navigation.goBack} />
         <View className="flex-1">
           <Searchbar
             ref={searchRef}
@@ -148,7 +152,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
             onSubmitEditing={onSubmitEditing}
           />
         </View>
-      </Appbar.Header>
+      </AppbarHeader>
       <View className="flex-1">
         <PostList
           loading={loading}
@@ -160,9 +164,9 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
         />
         {keywordListVisible && (
           <View
-            className="absolute bottom-0 left-0 right-0 top-0 z-40"
+            className="absolute top-0 right-0 bottom-0 left-0 z-40"
             style={backdrop}>
-            <FlatList
+            <LegendList
               contentContainerStyle={container}
               data={searchKeywords}
               keyboardShouldPersistTaps="always"

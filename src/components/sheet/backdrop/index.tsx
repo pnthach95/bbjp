@@ -1,8 +1,8 @@
 import {useBottomSheetModal} from '@gorhom/bottom-sheet';
-import React, {useMemo} from 'react';
+import {useMemo} from 'react';
 import {useTheme} from 'react-native-paper';
 import Animated, {
-  Extrapolate,
+  Extrapolation,
   interpolate,
   useAnimatedStyle,
 } from 'react-native-reanimated';
@@ -21,7 +21,7 @@ const CustomBackdrop = ({
       animatedIndex.value,
       [-1, 0],
       [0, 1],
-      Extrapolate.CLAMP,
+      Extrapolation.CLAMP,
     ),
   }));
 

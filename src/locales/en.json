@@ -42,5 +42,6 @@
   "undefined": "undefined",
   "unexpected-error": "An unexpected error occurred",
   "unknown": "Unknown",
-  "unlock": "Unlock"
+  "unlock": "Unlock",
+  "unspecified": "Unspecified"
 }

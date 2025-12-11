@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    "prettier-plugin-tailwindcss"
+  ],
+  "tailwindStylesheet": "./src/global.css",
+  "arrowParens": "avoid",
+  "bracketSameLine": true,
+  "bracketSpacing": false,
+  "singleQuote": true,
+  "trailingComma": "all"
+}

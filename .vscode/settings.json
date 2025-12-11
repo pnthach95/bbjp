@@ -52,7 +52,7 @@
     "source.fixAll.eslint": "explicit"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "taskExplorer.exclude": [
+  "taskexplorer.exclude": [
     "**/.vscode-test/**",
     "**/bin/**",
     "**/build/**",
@@ -80,14 +80,39 @@
     "src/locales"
   ],
   "i18n-ally.keystyle": "nested",
+  "i18n-ally.sortKeys": true,
   "tailwindCSS.classAttributes": [
     "class",
     "className",
-    "ngClass",
+    "headerClassName",
     "contentContainerClassName",
-    "indicatorClassName",
     "columnWrapperClassName",
-    "ListHeaderComponentClassName",
-    "ListFooterComponentClassName"
+    "endFillColorClassName",
+    "imageClassName",
+    "tintColorClassName",
+    "ios_backgroundColorClassName",
+    "thumbColorClassName",
+    "trackColorOnClassName",
+    "trackColorOffClassName",
+    "selectionColorClassName",
+    "cursorColorClassName",
+    "underlineColorAndroidClassName",
+    "placeholderTextColorClassName",
+    "selectionHandleColorClassName",
+    "colorsClassName",
+    "rippleColorClassName",
+    "progressBackgroundColorClassName",
+    "titleColorClassName",
+    "underlayColorClassName",
+    "colorClassName",
+    "drawerBackgroundColorClassName",
+    "statusBarBackgroundColorClassName",
+    "backdropColorClassName",
+    "backgroundColorClassName",
+    "ListFooterComponentClassName",
+    "ListHeaderComponentClassName"
+  ],
+  "tailwindCSS.classFunctions": [
+    "useResolveClassNames"
   ]
 }

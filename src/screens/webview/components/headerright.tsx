@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import {IconButton, Menu, Text} from 'components/paper';
+import {useState} from 'react';
 import {View} from 'react-native';
-import {IconButton, Menu, Text} from 'react-native-paper';
 
 type Props = {
   title?: string;

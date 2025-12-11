@@ -1,5 +1,4 @@
 import {BottomSheetHandle} from '@gorhom/bottom-sheet';
-import React from 'react';
 import {useTheme} from 'react-native-paper';
 import type {BottomSheetHandleProps} from '@gorhom/bottom-sheet';
 

@@ -1,17 +1,16 @@
-import {FasterImageView} from '@candlefinance/faster-image';
-import React, {useState} from 'react';
-import {useTranslation} from 'react-i18next';
-import {Platform, StyleSheet, View} from 'react-native';
-import ContextMenu from 'react-native-context-menu-view';
 import {
   ActivityIndicator,
   HelperText,
   Text,
   TouchableRipple,
-  useTheme,
-} from 'react-native-paper';
+} from 'components/paper';
+import {useState} from 'react';
+import {useTranslation} from 'react-i18next';
+import {Platform, StyleSheet, View} from 'react-native';
+import ContextMenu from 'react-native-context-menu-view';
+import {useTheme} from 'react-native-paper';
+import Image, {type TurboImageProps} from 'react-native-turbo-image';
 import {onDownloadImage} from 'utils';
-import type {FasterImageProps} from '@candlefinance/faster-image';
 
 type Props = {
   item: string;
@@ -32,7 +31,7 @@ const PostImg = ({item, onPress}: Props) => {
   const [error, setError] = useState(false);
   const filename = item.split('/').pop() || 'name.jpg';
 
-  const onLoad: FasterImageProps['onSuccess'] = ({
+  const onLoad: TurboImageProps['onSuccess'] = ({
     nativeEvent: {height, width},
   }) => {
     setAspectRatio(width / height);
@@ -71,15 +70,16 @@ const PostImg = ({item, onPress}: Props) => {
       }}>
       <TouchableRipple onLongPress={noop} onPress={onPress}>
         <>
-          <FasterImageView
+          <Image
             key={(item.split('/').pop() || 'zz') + `${aspectRatio}`}
-            source={{url: item, resizeMode: 'contain'}}
+            resizeMode="contain"
+            source={{uri: item}}
             style={styles.img}
-            onError={onError}
+            onFailure={onError}
             onSuccess={onLoad}
           />
           {loading && (
-            <View className="absolute bottom-0 left-0 right-0 top-0 items-center justify-center">
+            <View className="absolute top-0 right-0 bottom-0 left-0 items-center justify-center">
               <ActivityIndicator size="large" />
             </View>
           )}

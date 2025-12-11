@@ -1,4 +1,3 @@
-import React from 'react';
 import {WebView} from 'react-native-webview';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
 import HeaderRight from './components/headerright';

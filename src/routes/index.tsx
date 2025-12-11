@@ -1,3 +1,4 @@
+import '../global.css';
 import 'locales';
 import 'dayjs/locale/vi';
 import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
@@ -5,8 +6,7 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import duration from 'dayjs/plugin/duration';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
-import {useColorScheme} from 'nativewind';
-import React, {useEffect} from 'react';
+import {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import ErrorBoundary from 'react-native-error-boundary';
 import FlashMessage from 'react-native-flash-message';
@@ -26,14 +26,9 @@ ScreenGuardModule.registerWithBlurView({radius: 20});
 
 const App = () => {
   const {i18n} = useTranslation(),
-    {setColorScheme} = useColorScheme(),
     hydrated = useHydration(),
     appLanguage = useAppLanguage(),
     appTheme = useAppColorScheme();
-
-  useEffect(() => {
-    setColorScheme(appTheme);
-  }, [appTheme]);
 
   useEffect(() => {
     if (i18n.isInitialized && hydrated) {

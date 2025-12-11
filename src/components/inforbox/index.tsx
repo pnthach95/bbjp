@@ -1,7 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
-import React from 'react';
 import {View} from 'react-native';
-import {Chip, Text} from 'react-native-paper';
+import {Chip, Text} from '../paper';
 
 type Props = {
   post: TPost;

@@ -1,22 +1,21 @@
-import {FasterImageView} from '@candlefinance/faster-image';
-import {useNavigation} from '@react-navigation/native';
-import React from 'react';
-import {useTranslation} from 'react-i18next';
-import {FlatList, RefreshControl, View} from 'react-native';
-import LinearGradient from 'react-native-linear-gradient';
 import {
-  ActivityIndicator,
-  Chip,
-  Text,
-  TouchableRipple,
-  useTheme,
-} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+  LegendList,
+  type LegendListRef,
+  type LegendListRenderItemProps,
+} from '@legendapp/list';
+import {MaterialDesignIcons} from '@react-native-vector-icons/material-design-icons';
+import {useNavigation} from '@react-navigation/native';
+import {useTranslation} from 'react-i18next';
+import {RefreshControl, View} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import {useTheme} from 'react-native-paper';
+import Image from 'react-native-turbo-image';
+import {useFlatlistColumns} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
-import type {ListRenderItem} from 'react-native';
+import {ActivityIndicator, Chip, Text, TouchableRipple} from '../paper';
 
 type Props = {
-  postListRef?: React.LegacyRef<FlatList<TPost>>;
+  postListRef?: React.Ref<LegendListRef>;
   posts: TPost[];
   refreshing: boolean;
   loading?: boolean;
@@ -42,6 +41,7 @@ const PostList = ({
   const navigation = useNavigation();
   const {colors} = useTheme();
   const style = useSafeAreaPaddingBottom(12);
+  const columns = useFlatlistColumns();
 
   const RC = (
     <RefreshControl
@@ -52,7 +52,7 @@ const PostList = ({
     />
   );
 
-  const renderItem: ListRenderItem<TPost> = ({item}) => {
+  const renderItem = ({item}: LegendListRenderItemProps<TPost>) => {
     const onPress = () => {
       if (item.link) {
         navigation.navigate('Post', {post: item});
@@ -62,11 +62,11 @@ const PostList = ({
     return (
       <TouchableRipple borderless onLongPress={noop} onPress={onPress}>
         <>
-          <FasterImageView
-            source={{url: item.img || ''}}
+          <Image
+            source={{uri: item.img || ''}}
             style={{aspectRatio: 23 / 16}}
           />
-          <View className="absolute bottom-0 left-0 right-0 top-0 justify-between">
+          <View className="absolute top-0 right-0 bottom-0 left-0 justify-between">
             <LinearGradient
               className="p-3"
               colors={[gradientColor, 'transparent']}
@@ -105,7 +105,7 @@ const PostList = ({
   };
 
   return (
-    <FlatList
+    <LegendList
       ref={postListRef}
       contentContainerStyle={style}
       data={posts}
@@ -117,11 +117,12 @@ const PostList = ({
       ListHeaderComponent={
         !refreshing && !loading && posts.length === 0 ? (
           <View className="items-center justify-center">
-            <Icon color={colors.error} name="error" size={70} />
+            <MaterialDesignIcons color={colors.error} name="alert" size={70} />
             <Text>{t('not-found')}</Text>
           </View>
         ) : null
       }
+      numColumns={columns}
       refreshControl={RC}
       renderItem={renderItem}
       showsVerticalScrollIndicator={false}

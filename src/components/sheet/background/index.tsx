@@ -1,4 +1,3 @@
-import React from 'react';
 import {View} from 'react-native';
 import {useTheme} from 'react-native-paper';
 import type {BottomSheetBackgroundProps} from '@gorhom/bottom-sheet';

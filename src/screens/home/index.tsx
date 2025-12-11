@@ -1,7 +1,7 @@
 import {useScrollToTop} from '@react-navigation/native';
 import API, {LINKS} from 'api';
 import PostList from 'components/postlist';
-import React, {useEffect, useRef, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {useBaseURL} from 'stores';
 import {postParser} from 'utils';
 import type {RootStackScreenProps} from 'typings/navigation';
@@ -48,7 +48,7 @@ const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
       } else {
         isEndList.current = true;
       }
-    } catch (error) {
+    } catch {
       // console.log(error);
       isEndList.current = true;
     } finally {
