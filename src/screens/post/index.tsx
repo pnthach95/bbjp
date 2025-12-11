@@ -75,6 +75,7 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
       recycleItems
       columnWrapperStyle={styles.columnWrapperStyle}
       contentContainerStyle={container}
+      contentInsetAdjustmentBehavior="automatic"
       data={imgs}
       ListHeaderComponent={listHeader}
       numColumns={numColumns}
