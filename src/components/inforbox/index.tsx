@@ -10,33 +10,26 @@ const InforBox = ({post}: Props) => {
   const navigation = useNavigation();
 
   return (
-    <>
-      <View className="p-3">
-        <Text selectable className="text-center" variant="titleMedium">
-          {post.title}
-        </Text>
+    <View className="flex-row items-center pt-3">
+      <View className="items-center px-3">
+        <Text>{post.time}</Text>
       </View>
-      <View className="flex-row">
-        <View className="items-center px-3">
-          <Text>{post.time}</Text>
-        </View>
-        <View className="flex-1 flex-row flex-wrap items-center gap-3">
-          {[...post.cats, ...post.tags].map(c => {
-            const onPress = () => {
-              // @ts-ignore
-              // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-              navigation.push('Main', {metadata: c});
-            };
+      <View className="flex-1 flex-row flex-wrap items-center gap-3">
+        {[...post.cats, ...post.tags].map(c => {
+          const onPress = () => {
+            // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/no-unsafe-call
+            navigation.push('Main', {metadata: c});
+          };
 
-            return (
-              <Chip key={c.name} onPress={onPress}>
-                {c.name}
-              </Chip>
-            );
-          })}
-        </View>
+          return (
+            <Chip key={c.name} onPress={onPress}>
+              {c.name}
+            </Chip>
+          );
+        })}
       </View>
-    </>
+    </View>
   );
 };
 

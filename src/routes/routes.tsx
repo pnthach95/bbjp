@@ -126,17 +126,33 @@ const Routes = () => {
                 post: {title, link},
               },
             },
-          }) => ({
-            title,
-            headerRight: link
-              ? () => {
-                  const onPress = () => {
-                    navigation.navigate('WebView', {uri: link, title});
-                  };
-                  return <IconButton icon="web" onPress={onPress} />;
-                }
-              : undefined,
-          })}
+          }) => {
+            const onPress = () => {
+              if (link) {
+                navigation.navigate('WebView', {uri: link, title});
+              }
+            };
+
+            return {
+              title,
+              headerRight: link
+                ? () => {
+                    return <IconButton icon="web" onPress={onPress} />;
+                  }
+                : undefined,
+              unstable_headerRightItems: link
+                ? ({tintColor}) => [
+                    {
+                      type: 'button',
+                      tintColor,
+                      onPress,
+                      label: 'Open web',
+                      icon: {type: 'sfSymbol', name: 'globe.fill'},
+                    },
+                  ]
+                : undefined,
+            };
+          }}
         />
         <RootStack.Screen
           component={WebViewScreen}

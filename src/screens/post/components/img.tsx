@@ -61,7 +61,6 @@ const PostImg = ({item, onPress}: Props) => {
           iconColor: colors.onBackground,
         },
       ]}
-      className="w-full"
       style={{aspectRatio}}
       onPress={({nativeEvent: {index}}) => {
         if (index === 0) {
