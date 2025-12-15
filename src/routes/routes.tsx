@@ -11,7 +11,7 @@ import localizedFormat from 'dayjs/plugin/localizedFormat';
 import {AnimatePresence, MotiView} from 'moti';
 import {useEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {StatusBar} from 'react-native';
+import {Platform, StatusBar} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import BootSplash from 'react-native-bootsplash';
 import GalleryScreen from 'screens/gallery';
@@ -80,7 +80,7 @@ const Routes = () => {
             return {
               title: params?.metadata.name || t('tabs.tab1'),
               headerBlurEffect: 'regular',
-              headerTransparent: true,
+              headerTransparent: Platform.OS === 'ios',
               unstable_headerRightItems: ({tintColor}) => [
                 {
                   type: 'button',
@@ -136,7 +136,7 @@ const Routes = () => {
             return {
               title,
               headerBlurEffect: 'regular',
-              headerTransparent: true,
+              headerTransparent: Platform.OS === 'ios',
               headerRight: link
                 ? () => {
                     return <IconButton icon="web" onPress={onPress} />;
