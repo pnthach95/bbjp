@@ -91,6 +91,7 @@ const GalleryScreen = ({
               <MaterialDesignIcons
                 colorClassName="accent-white"
                 name="download"
+                size={32}
               />
             </Button>
           </View>

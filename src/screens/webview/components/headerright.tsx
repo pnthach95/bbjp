@@ -12,7 +12,11 @@ const HeaderRight = ({title, url}: Props) => {
   return (
     <Select>
       <Select.Trigger>
-        <MaterialDesignIcons name="dots-horizontal" />
+        <MaterialDesignIcons
+          colorClassName="accent-foreground"
+          name="dots-horizontal"
+          size={32}
+        />
       </Select.Trigger>
       <Select.Portal>
         <Select.Overlay />

@@ -65,7 +65,7 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
     return (
       <View className="mb-3">
         <InforBox post={post} />
-        {loading && <Spinner size="lg" />}
+        {loading && <Spinner className="self-center" size="lg" />}
       </View>
     );
   };
