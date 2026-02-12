@@ -1,5 +1,5 @@
 type TLanguage = 'en' | 'vi';
-
+type TAppTheme = 'dark' | 'light' | 'system';
 type TLockerState = 'lock' | 'unlock' | 'unavailable';
 
 type TBaseURL = 'https://tokyocafe.org' | 'https://www.tokyobombers.com';
@@ -7,6 +7,7 @@ type TBaseURL = 'https://tokyocafe.org' | 'https://www.tokyobombers.com';
 type StoreState = {
   bundleVersion: string;
   appLanguage: TLanguage;
+  appTheme: TAppTheme;
   baseURL: TBaseURL;
   locker: TLockerState;
   searchKeywords: string[];

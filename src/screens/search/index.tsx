@@ -3,10 +3,10 @@ import {MaterialDesignIcons} from 'components/icons';
 import PostList from 'components/postlist';
 import {Text} from 'components/text';
 import {Button} from 'heroui-native/button';
-import {PressableFeedback} from 'heroui-native/pressable-feedback';
+import {Chip} from 'heroui-native/chip';
 import {useLayoutEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {FlatList, View} from 'react-native';
+import {FlatList} from 'react-native';
 import {
   onAddNewSearchKeyword,
   onDeleteAllSearchKeyword,
@@ -28,7 +28,6 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
   const [posts, setPosts] = useState<TPost[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [keywordListVisible, setKeywordListVisible] = useState(true);
   const searchRef = useRef<SearchBarCommands>(null);
   const postListRef = useRef<LegendListRef>(null);
   const page = useRef(1);
@@ -39,7 +38,6 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
       headerSearchBarOptions: {
         ref: searchRef,
         onSearchButtonPress: event => onSubmit(event?.nativeEvent?.text),
-        onFocus: () => setKeywordListVisible(true),
       },
     });
   }, [navigation]);
@@ -94,20 +92,20 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
 
     const onPressItem = () => {
       searchRef.current?.blur();
-      onHideKeywordList();
       setValue(item);
       onSubmit(item);
     };
 
     return (
-      <PressableFeedback onPress={onPressItem}>
-        <View className="flex-row items-center justify-between px-3">
-          <Text>{item}</Text>
-          <Button onPress={onPressDelete}>
-            <MaterialDesignIcons name="trash-can-outline" />
-          </Button>
-        </View>
-      </PressableFeedback>
+      <Chip size="lg" variant="soft" onPress={onPressItem}>
+        <Chip.Label>{item}</Chip.Label>
+        <MaterialDesignIcons
+          colorClassName="accent-danger"
+          name="trash-can-outline"
+          size={20}
+          onPress={onPressDelete}
+        />
+      </Chip>
     );
   };
 
@@ -115,40 +113,37 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
     searchKeywords.length > 0
       ? () => {
           return (
-            <PressableFeedback
-              className="p-3"
+            <Button
+              size="sm"
+              variant="danger"
               onPress={onDeleteAllSearchKeyword}>
               <Text>{t('delete-all')}</Text>
-            </PressableFeedback>
+            </Button>
           );
         }
       : undefined;
 
-  const onHideKeywordList = () => setKeywordListVisible(false);
-
   return (
-    <>
-      <PostList
-        loading={loading}
-        postListRef={postListRef}
-        posts={posts}
-        refreshing={refreshing}
-        onEndReached={onEndReached}
-        onRefresh={onSubmit}
-      />
-      {keywordListVisible && (
-        <View className="absolute top-0 right-0 bottom-0 left-0 z-40">
-          <FlatList
-            contentContainerStyle={container}
-            data={searchKeywords}
-            keyboardShouldPersistTaps="always"
-            ListHeaderComponent={listHeader}
-            renderItem={renderSearchKeyword}
-            showsVerticalScrollIndicator={false}
-          />
-        </View>
-      )}
-    </>
+    <PostList
+      ListHeaderComponent={
+        <FlatList
+          horizontal
+          contentContainerClassName="items-center gap-3 px-3 py-1"
+          contentContainerStyle={container}
+          data={searchKeywords}
+          keyboardShouldPersistTaps="always"
+          ListHeaderComponent={listHeader}
+          renderItem={renderSearchKeyword}
+          showsHorizontalScrollIndicator={false}
+        />
+      }
+      loading={loading}
+      postListRef={postListRef}
+      posts={posts}
+      refreshing={refreshing}
+      onEndReached={onEndReached}
+      onRefresh={onSubmit}
+    />
   );
 };
 

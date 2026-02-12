@@ -8,7 +8,11 @@ import {useFlatlistColumns} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
 import {Text} from '../text';
 import {PostItem} from './item';
-import type {LegendListRef, LegendListRenderItemProps} from '@legendapp/list';
+import type {
+  LegendListProps,
+  LegendListRef,
+  LegendListRenderItemProps,
+} from '@legendapp/list';
 
 type Props = {
   postListRef?: React.Ref<LegendListRef>;
@@ -17,6 +21,7 @@ type Props = {
   loading?: boolean;
   onEndReached?: () => void;
   onRefresh?: () => void;
+  ListHeaderComponent?: LegendListProps['ListHeaderComponent'];
 };
 
 const PostList = ({
@@ -26,6 +31,7 @@ const PostList = ({
   loading,
   onEndReached,
   onRefresh,
+  ListHeaderComponent,
 }: Props) => {
   const {t} = useTranslation();
   const navigation = useNavigation();
@@ -73,8 +79,11 @@ const PostList = ({
         </View>
       }
       ListFooterComponent={
-        !refreshing && loading ? <Spinner className="m-3" size="lg" /> : null
+        !refreshing && loading ? (
+          <Spinner className="m-3 self-center" size="lg" />
+        ) : null
       }
+      ListHeaderComponent={ListHeaderComponent}
       numColumns={columns}
       refreshControl={RC}
       renderItem={renderItem}

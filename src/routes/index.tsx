@@ -12,6 +12,7 @@ import {useTranslation} from 'react-i18next';
 import ErrorBoundary from 'react-native-error-boundary';
 import FlashMessage from 'react-native-flash-message';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {KeyboardProvider} from 'react-native-keyboard-controller';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import ScreenGuardModule from 'react-native-screenguard';
 import ErrorBoundaryScreen from 'screens/errorboundary';
@@ -62,14 +63,16 @@ const App = () => {
   return (
     <GestureHandlerRootView className="flex-1">
       <SafeAreaProvider>
-        <HeroUINativeProvider>
-          <BottomSheetModalProvider>
-            <ErrorBoundary FallbackComponent={ErrorBoundaryScreen}>
-              <Routes />
-              <FlashMessage position="top" />
-            </ErrorBoundary>
-          </BottomSheetModalProvider>
-        </HeroUINativeProvider>
+        <KeyboardProvider>
+          <HeroUINativeProvider>
+            <BottomSheetModalProvider>
+              <ErrorBoundary FallbackComponent={ErrorBoundaryScreen}>
+                <Routes />
+                <FlashMessage position="top" />
+              </ErrorBoundary>
+            </BottomSheetModalProvider>
+          </HeroUINativeProvider>
+        </KeyboardProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

@@ -12,6 +12,8 @@
 		927759DDE850357DA669E266 /* libPods-bbjp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 58EF79CE81DD9BF11D361065 /* libPods-bbjp.a */; };
 		A417638F29CD9FF000BD90B1 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A417638E29CD9FF000BD90B1 /* BootSplash.storyboard */; };
 		A433FC3D2AF0D75800F18D82 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A433FC3C2AF0D75800F18D82 /* Localizable.xcstrings */; };
+		A49761822F3E322900A0593A /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = A49761812F3E322900A0593A /* AppIcon.icon */; };
+		A49761842F3E323700A0593A /* AppIconDev.icon in Resources */ = {isa = PBXBuildFile; fileRef = A49761832F3E323700A0593A /* AppIconDev.icon */; };
 		A4BB8E182B79AD9C006C7EFC /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A4BB8E172B79AD9C006C7EFC /* InfoPlist.xcstrings */; };
 		BE36AAC48B10940980D177A4 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = EE875ED2C193A20F748CF450 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
@@ -25,6 +27,8 @@
 		761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = bbjp/AppDelegate.swift; sourceTree = "<group>"; };
 		A417638E29CD9FF000BD90B1 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = bbjp/BootSplash.storyboard; sourceTree = "<group>"; };
 		A433FC3C2AF0D75800F18D82 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = Localizable.xcstrings; path = bbjp/Localizable.xcstrings; sourceTree = "<group>"; };
+		A49761812F3E322900A0593A /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; name = AppIcon.icon; path = bbjp/AppIcon.icon; sourceTree = "<group>"; };
+		A49761832F3E323700A0593A /* AppIconDev.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; name = AppIconDev.icon; path = bbjp/AppIconDev.icon; sourceTree = "<group>"; };
 		A4BB8E172B79AD9C006C7EFC /* InfoPlist.xcstrings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json.xcstrings; name = InfoPlist.xcstrings; path = bbjp/InfoPlist.xcstrings; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		EE875ED2C193A20F748CF450 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = bbjp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -46,6 +50,8 @@
 		13B07FAE1A68108700A75B9A /* bbjp */ = {
 			isa = PBXGroup;
 			children = (
+				A49761812F3E322900A0593A /* AppIcon.icon */,
+				A49761832F3E323700A0593A /* AppIconDev.icon */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				761780EC2CA45674006654EE /* AppDelegate.swift */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
@@ -170,6 +176,8 @@
 				A433FC3D2AF0D75800F18D82 /* Localizable.xcstrings in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				BE36AAC48B10940980D177A4 /* PrivacyInfo.xcprivacy in Resources */,
+				A49761822F3E322900A0593A /* AppIcon.icon in Resources */,
+				A49761842F3E323700A0593A /* AppIconDev.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,11 +274,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 444FB21F1E9CD113A8498114 /* Pods-bbjp.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDebug;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDev;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = bbjp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "BBJP (dev)";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -301,6 +310,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = bbjp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = BBJP;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

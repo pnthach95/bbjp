@@ -3,6 +3,7 @@ import {produce} from 'immer';
 import i18n from 'locales';
 import {useEffect, useState} from 'react';
 import {MMKVLoader} from 'react-native-mmkv-storage';
+import {Uniwind} from 'uniwind';
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
 import type {StateStorage} from 'zustand/middleware';
@@ -18,6 +19,7 @@ const useAppStore = create<StoreState>()(
       bundleVersion: '0',
       baseURL: 'https://tokyocafe.org',
       appLanguage: 'en',
+      appTheme: 'system',
       locker: 'unavailable',
       searchKeywords: [],
     }),
@@ -37,6 +39,7 @@ const useAppStore = create<StoreState>()(
 
 export const useBundleVersion = () => useAppStore(s => s.bundleVersion);
 export const useAppLanguage = () => useAppStore(s => s.appLanguage);
+export const useAppTheme = () => useAppStore(s => s.appTheme);
 export const useLocker = () => useAppStore(s => s.locker);
 export const useSearchKeywords = () => useAppStore(s => s.searchKeywords);
 export const useBaseURL = () => useAppStore(s => s.baseURL);
@@ -49,6 +52,11 @@ export const setAppLanguage = (appLanguage: TLanguage) => {
   useAppStore.setState({appLanguage});
   i18n.changeLanguage(appLanguage);
   dayjs.locale(appLanguage);
+};
+
+export const setAppTheme = (appTheme: TAppTheme) => {
+  useAppStore.setState({appTheme});
+  Uniwind.setTheme(appTheme);
 };
 
 export const setBaseURL = (baseURL: TBaseURL) => {
@@ -90,9 +98,12 @@ export const useHydration = () => {
     const unsubHydrate = useAppStore.persist.onHydrate(() =>
       setHydrated(false),
     );
-    const unsubFinishHydration = useAppStore.persist.onFinishHydration(() => {
-      setHydrated(true);
-    });
+    const unsubFinishHydration = useAppStore.persist.onFinishHydration(
+      ({appTheme}) => {
+        setHydrated(true);
+        Uniwind.setTheme(appTheme);
+      },
+    );
 
     setHydrated(useAppStore.persist.hasHydrated());
 
