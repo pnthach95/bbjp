@@ -6,7 +6,6 @@ type TBaseURL = 'https://tokyocafe.org' | 'https://www.tokyobombers.com';
 
 type StoreState = {
   bundleVersion: string;
-  appTheme: 'dark' | 'light' | 'unspecified';
   appLanguage: TLanguage;
   baseURL: TBaseURL;
   locker: TLockerState;

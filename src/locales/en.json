@@ -34,6 +34,7 @@
   "server-error": "Server error",
   "session-expired": "Session is expired",
   "status": "Status",
+  "system": "System",
   "tabs": {
     "tab1": "Home",
     "tab2": "Settings"

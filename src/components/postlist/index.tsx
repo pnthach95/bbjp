@@ -1,12 +1,12 @@
 import {LegendList} from '@legendapp/list';
-import {MaterialDesignIcons} from '@react-native-vector-icons/material-design-icons';
 import {StackActions, useNavigation} from '@react-navigation/native';
+import {MaterialDesignIcons} from 'components/icons';
+import {Spinner} from 'heroui-native/spinner';
 import {useTranslation} from 'react-i18next';
 import {RefreshControl, View} from 'react-native';
-import {useTheme} from 'react-native-paper';
 import {useFlatlistColumns} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
-import {ActivityIndicator, Text} from '../paper';
+import {Text} from '../text';
 import {PostItem} from './item';
 import type {LegendListRef, LegendListRenderItemProps} from '@legendapp/list';
 
@@ -29,15 +29,14 @@ const PostList = ({
 }: Props) => {
   const {t} = useTranslation();
   const navigation = useNavigation();
-  const {colors} = useTheme();
   const style = useSafeAreaPaddingBottom(12);
   const columns = useFlatlistColumns();
 
   const RC = (
     <RefreshControl
-      colors={[colors.primary, colors.secondary]}
+      colorsClassName="accent-primary"
       refreshing={refreshing}
-      tintColor={colors.primary}
+      tintColorClassName="accent-primary"
       onRefresh={onRefresh}
     />
   );
@@ -65,14 +64,16 @@ const PostList = ({
       keyExtractor={({key}) => key}
       ListEmptyComponent={
         <View className="flex-1 items-center justify-center pt-5">
-          <MaterialDesignIcons color={colors.error} name="alert" size={70} />
+          <MaterialDesignIcons
+            colorClassName="accent-danger"
+            name="alert"
+            size={70}
+          />
           <Text>{t('not-found')}</Text>
         </View>
       }
       ListFooterComponent={
-        !refreshing && loading ? (
-          <ActivityIndicator className="m-3" size="large" />
-        ) : null
+        !refreshing && loading ? <Spinner className="m-3" size="lg" /> : null
       }
       numColumns={columns}
       refreshControl={RC}

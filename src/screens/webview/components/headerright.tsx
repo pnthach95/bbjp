@@ -1,5 +1,6 @@
-import {IconButton, Menu, Text} from 'components/paper';
-import {useState} from 'react';
+import {MaterialDesignIcons} from 'components/icons';
+import {Text} from 'components/text';
+import {Select} from 'heroui-native/select';
 import {View} from 'react-native';
 
 type Props = {
@@ -8,27 +9,27 @@ type Props = {
 };
 
 const HeaderRight = ({title, url}: Props) => {
-  const [visible, setVisible] = useState(false);
-
-  const onShow = () => setVisible(true);
-  const onHide = () => setVisible(false);
-
   return (
-    <Menu
-      anchor={<IconButton icon="dots-horizontal" onPress={onShow} />}
-      visible={visible}
-      onDismiss={onHide}>
-      {!!title && (
-        <View className="p-3">
-          <Text>{title}</Text>
-        </View>
-      )}
-      {!!url && (
-        <View className="p-3">
-          <Text>{url}</Text>
-        </View>
-      )}
-    </Menu>
+    <Select>
+      <Select.Trigger>
+        <MaterialDesignIcons name="dots-horizontal" />
+      </Select.Trigger>
+      <Select.Portal>
+        <Select.Overlay />
+        <Select.Content presentation="popover">
+          {!!title && (
+            <View className="p-3">
+              <Text>{title}</Text>
+            </View>
+          )}
+          {!!url && (
+            <View className="p-3">
+              <Text>{url}</Text>
+            </View>
+          )}
+        </Select.Content>
+      </Select.Portal>
+    </Select>
   );
 };
 

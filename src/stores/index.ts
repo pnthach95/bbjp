@@ -2,7 +2,6 @@ import dayjs from 'dayjs';
 import {produce} from 'immer';
 import i18n from 'locales';
 import {useEffect, useState} from 'react';
-import {Appearance} from 'react-native';
 import {MMKVLoader} from 'react-native-mmkv-storage';
 import {create} from 'zustand';
 import {createJSONStorage, persist} from 'zustand/middleware';
@@ -18,7 +17,6 @@ const useAppStore = create<StoreState>()(
     _ => ({
       bundleVersion: '0',
       baseURL: 'https://tokyocafe.org',
-      appTheme: Appearance.getColorScheme() || 'light',
       appLanguage: 'en',
       locker: 'unavailable',
       searchKeywords: [],
@@ -37,7 +35,6 @@ const useAppStore = create<StoreState>()(
   ),
 );
 
-export const useAppColorScheme = () => useAppStore(s => s.appTheme);
 export const useBundleVersion = () => useAppStore(s => s.bundleVersion);
 export const useAppLanguage = () => useAppStore(s => s.appLanguage);
 export const useLocker = () => useAppStore(s => s.locker);
@@ -84,15 +81,6 @@ export const onDeleteSearchKeyword = (idx: number) => {
 
 export const onDeleteAllSearchKeyword = () => {
   useAppStore.setState({searchKeywords: []});
-};
-
-export const onSwitchTheme = () => {
-  useAppStore.setState(
-    produce<StoreState>(draft => {
-      const newColor = draft.appTheme === 'dark' ? 'light' : 'dark';
-      draft.appTheme = newColor;
-    }),
-  );
 };
 
 export const useHydration = () => {

@@ -1,7 +1,9 @@
+import {Chip} from 'heroui-native/chip';
+import {PressableFeedback} from 'heroui-native/pressable-feedback';
 import {View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Image from 'react-native-turbo-image';
-import {Chip, Text, TouchableRipple} from '../paper';
+import {Text} from '../text';
 
 type Props = {
   item: TPost;
@@ -17,7 +19,8 @@ const gradientColor = '#0006';
 
 export const PostItem = ({onPress, onPressTag, item}: Props) => {
   return (
-    <TouchableRipple borderless onLongPress={noop} onPress={onPress}>
+    <PressableFeedback onLongPress={noop} onPress={onPress}>
+      <PressableFeedback.Ripple />
       <>
         <Image source={{uri: item.img || ''}} style={{aspectRatio: 23 / 16}} />
         <View className="absolute top-0 right-0 bottom-0 left-0 justify-between">
@@ -25,16 +28,14 @@ export const PostItem = ({onPress, onPressTag, item}: Props) => {
             colors={[gradientColor, 'transparent']}
             locations={[0.5, 1]}>
             <View className="p-3">
-              <Text className="text-white" variant="labelSmall">
-                {item.time}
-              </Text>
+              <Text className="text-white">{item.time}</Text>
             </View>
           </LinearGradient>
           <LinearGradient
             colors={['transparent', gradientColor]}
             locations={[0, 0.5]}>
             <View className="p-3">
-              <Text selectable className="text-white" variant="titleLarge">
+              <Text selectable className="text-white">
                 {item.title}
               </Text>
               <View className="flex-row flex-wrap items-center gap-3 pt-3">
@@ -44,7 +45,7 @@ export const PostItem = ({onPress, onPressTag, item}: Props) => {
                   };
 
                   return (
-                    <Chip key={c.name + c.link} compact onPress={onPressItem}>
+                    <Chip key={c.name + c.link} onPress={onPressItem}>
                       {c.name}
                     </Chip>
                   );
@@ -54,6 +55,6 @@ export const PostItem = ({onPress, onPressTag, item}: Props) => {
           </LinearGradient>
         </View>
       </>
-    </TouchableRipple>
+    </PressableFeedback>
   );
 };

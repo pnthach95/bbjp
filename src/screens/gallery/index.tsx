@@ -1,12 +1,13 @@
 import {useIsFocused} from '@react-navigation/native';
-import {IconButton} from 'components/paper';
+import {MaterialDesignIcons} from 'components/icons';
+import {Text} from 'components/text';
+import {Button} from 'heroui-native/button';
 import {useCallback, useEffect, useRef, useState} from 'react';
-import {StatusBar, StyleSheet, Text, View} from 'react-native';
+import {StatusBar, StyleSheet, View} from 'react-native';
 import AwesomeGallery from 'react-native-awesome-gallery';
 import Animated, {FadeInUp, FadeOutUp} from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import Image from 'react-native-turbo-image';
-import {useAppColorScheme} from 'stores';
 import {onDownloadImage} from 'utils';
 import type {GalleryRef, RenderItemInfo} from 'react-native-awesome-gallery';
 import type {RootStackScreenProps} from 'typings/navigation';
@@ -33,7 +34,6 @@ const GalleryScreen = ({
   route,
 }: RootStackScreenProps<'Gallery'>) => {
   const {idx, images} = route.params;
-  const appTheme = useAppColorScheme();
   const {top} = useSafeAreaInsets();
   const isFocused = useIsFocused();
   const gallery = useRef<GalleryRef>(null);
@@ -41,11 +41,6 @@ const GalleryScreen = ({
 
   useEffect(() => {
     setMounted(true);
-    return () => {
-      StatusBar.setBarStyle(
-        appTheme === 'dark' ? 'light-content' : 'dark-content',
-      );
-    };
   }, []);
 
   const [infoVisible, setInfoVisible] = useState(true);
@@ -92,11 +87,12 @@ const GalleryScreen = ({
             <Text className="text-base font-semibold text-white">
               {idx + 1} / {images.length}
             </Text>
-            <IconButton
-              icon="download"
-              iconColor="white"
-              onPress={onPressDownload}
-            />
+            <Button isIconOnly onPress={onPressDownload}>
+              <MaterialDesignIcons
+                colorClassName="accent-white"
+                name="download"
+              />
+            </Button>
           </View>
         </Animated.View>
       )}

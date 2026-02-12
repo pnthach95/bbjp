@@ -1,13 +1,18 @@
 import 'locales';
 import {useAppState} from '@react-native-community/hooks';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {IconButton} from 'components/paper';
-import SettingsModal from 'components/settingsmodal';
+import {MaterialDesignIcons} from 'components/icons';
+import {SettingsModal, type SettingsModalRef} from 'components/settingsmodal';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import duration from 'dayjs/plugin/duration';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import {Button} from 'heroui-native/button';
 import {AnimatePresence, MotiView} from 'moti';
 import {useEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
@@ -20,8 +25,8 @@ import LockScreen from 'screens/lock';
 import PostScreen from 'screens/post';
 import SearchScreen from 'screens/search';
 import WebViewScreen from 'screens/webview';
-import {setLocker, useAppColorScheme, useLocker} from 'stores';
-import {navigationDarkTheme, navigationTheme} from 'utils/themes';
+import {setLocker, useLocker} from 'stores';
+import {useUniwind} from 'uniwind';
 import type {RootStackParamList} from 'typings/navigation';
 
 dayjs.extend(localizedFormat);
@@ -32,12 +37,13 @@ const rnBiometrics = new ReactNativeBiometrics();
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const Routes = () => {
-  const appTheme = useAppColorScheme(),
-    {t} = useTranslation();
+  const {t} = useTranslation();
   const locker = useLocker();
   const appState = useAppState();
-  const settingsRef = useRef<SettingsModal>(null);
+  const settingsRef = useRef<SettingsModalRef>({open: () => {}});
   const [isSensorAvailable, setIsSensorAvailable] = useState(false);
+  const {theme, hasAdaptiveThemes} = useUniwind();
+  const activeTheme = hasAdaptiveThemes ? 'system' : theme;
 
   useEffect(() => {
     rnBiometrics.isSensorAvailable().then(resultObject => {
@@ -62,20 +68,16 @@ const Routes = () => {
 
   return (
     <NavigationContainer
-      theme={appTheme === 'dark' ? navigationDarkTheme : navigationTheme}
+      theme={activeTheme === 'dark' ? DarkTheme : DefaultTheme}
       onReady={onReady}>
-      <StatusBar
-        translucent
-        backgroundColor="transparent"
-        barStyle={appTheme === 'dark' ? 'light-content' : 'dark-content'}
-      />
+      <StatusBar translucent backgroundColor="transparent" />
       <RootStack.Navigator>
         <RootStack.Screen
           component={HomeScreen}
           name="Main"
           options={({route: {params}, navigation}) => {
             const onPressSearch = () => navigation.navigate('Search');
-            const onPressSettings = () => settingsRef.current?.open();
+            const onPressSettings = () => settingsRef.current.open();
 
             return {
               title: params?.metadata.name || t('tabs.tab1'),
@@ -100,16 +102,12 @@ const Routes = () => {
               headerRight: ({tintColor}) => {
                 return (
                   <>
-                    <IconButton
-                      icon="magnify"
-                      iconColor={tintColor}
-                      onPress={onPressSearch}
-                    />
-                    <IconButton
-                      icon="cog"
-                      iconColor={tintColor}
-                      onPress={onPressSettings}
-                    />
+                    <Button isIconOnly onPress={onPressSearch}>
+                      <MaterialDesignIcons color={tintColor} name="magnify" />
+                    </Button>
+                    <Button isIconOnly onPress={onPressSettings}>
+                      <MaterialDesignIcons color={tintColor} name="cog" />
+                    </Button>
                   </>
                 );
               },
@@ -139,7 +137,11 @@ const Routes = () => {
               headerTransparent: Platform.OS === 'ios',
               headerRight: link
                 ? () => {
-                    return <IconButton icon="web" onPress={onPress} />;
+                    return (
+                      <Button isIconOnly onPress={onPress}>
+                        <MaterialDesignIcons name="web" />
+                      </Button>
+                    );
                   }
                 : undefined,
               unstable_headerRightItems: link
@@ -168,7 +170,7 @@ const Routes = () => {
         <RootStack.Screen
           component={SearchScreen}
           name="Search"
-          options={{headerShown: false}}
+          options={{headerSearchBarOptions: {autoCapitalize: 'words'}}}
         />
         <RootStack.Screen
           component={GalleryScreen}

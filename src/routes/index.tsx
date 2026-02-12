@@ -6,29 +6,51 @@ import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import duration from 'dayjs/plugin/duration';
 import localizedFormat from 'dayjs/plugin/localizedFormat';
+import {HeroUINativeProvider} from 'heroui-native/provider';
 import {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import ErrorBoundary from 'react-native-error-boundary';
 import FlashMessage from 'react-native-flash-message';
 import {GestureHandlerRootView} from 'react-native-gesture-handler';
-import {Provider as PaperProvider} from 'react-native-paper';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import ScreenGuardModule from 'react-native-screenguard';
 import ErrorBoundaryScreen from 'screens/errorboundary';
-import {useAppColorScheme, useAppLanguage, useHydration} from 'stores';
-import {appMaterialDark, appMaterialLight} from 'utils/themes';
+import {useAppLanguage, useHydration} from 'stores';
 import Routes from './routes';
 
 dayjs.extend(localizedFormat);
 dayjs.extend(duration);
 dayjs.extend(customParseFormat);
-ScreenGuardModule.registerWithBlurView({radius: 20});
 
 const App = () => {
   const {i18n} = useTranslation(),
     hydrated = useHydration(),
-    appLanguage = useAppLanguage(),
-    appTheme = useAppColorScheme();
+    appLanguage = useAppLanguage();
+
+  useEffect(() => {
+    const init = async () => {
+      try {
+        await ScreenGuardModule.initSettings({
+          displayScreenGuardOverlay: true,
+          timeAfterResume: 2000,
+          getScreenshotPath: true,
+        });
+        ScreenGuardModule.registerWithBlurView({radius: 20});
+      } catch (error) {
+        if (__DEV__) {
+          // eslint-disable-next-line no-console
+          console.error('Failed to initialize ScreenGuard:', error);
+        }
+      }
+    };
+
+    init();
+
+    // Cleanup on unmount
+    return () => {
+      ScreenGuardModule.unregister();
+    };
+  }, []);
 
   useEffect(() => {
     if (i18n.isInitialized && hydrated) {
@@ -40,15 +62,14 @@ const App = () => {
   return (
     <GestureHandlerRootView className="flex-1">
       <SafeAreaProvider>
-        <PaperProvider
-          theme={appTheme === 'dark' ? appMaterialDark : appMaterialLight}>
+        <HeroUINativeProvider>
           <BottomSheetModalProvider>
             <ErrorBoundary FallbackComponent={ErrorBoundaryScreen}>
               <Routes />
               <FlashMessage position="top" />
             </ErrorBoundary>
           </BottomSheetModalProvider>
-        </PaperProvider>
+        </HeroUINativeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

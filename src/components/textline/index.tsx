@@ -1,5 +1,5 @@
 import {View} from 'react-native';
-import {Text} from '../paper';
+import {Text} from '../text';
 
 type Props = {
   left?: string;

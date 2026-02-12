@@ -1,7 +1,7 @@
 import {LegendList, type LegendListRenderItemProps} from '@legendapp/list';
 import IDOMParser from 'advanced-html-parser';
 import InforBox from 'components/inforbox';
-import {ActivityIndicator} from 'components/paper';
+import {Spinner} from 'heroui-native/spinner';
 import {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {useImageColumns} from 'utils';
@@ -65,13 +65,15 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
     return (
       <View className="mb-3">
         <InforBox post={post} />
-        {loading && <ActivityIndicator size="large" />}
+        {loading && <Spinner size="lg" />}
       </View>
     );
   };
 
   return (
     <LegendList
+      automaticallyAdjustContentInsets
+      automaticallyAdjustsScrollIndicatorInsets
       recycleItems
       columnWrapperStyle={styles.columnWrapperStyle}
       contentContainerStyle={container}

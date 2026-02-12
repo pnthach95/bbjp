@@ -1,37 +1,22 @@
-import {BottomSheetModal, BottomSheetView} from '@gorhom/bottom-sheet';
 import LanguageModal from 'components/lauguagemodal';
-import CustomBackdrop from 'components/sheet/backdrop';
-import CustomHandle from 'components/sheet/handle';
-import {
-  forwardRef,
-  useEffect,
-  useImperativeHandle,
-  useRef,
-  useState,
-} from 'react';
+import {BottomSheet} from 'heroui-native/bottom-sheet';
+import {Button} from 'heroui-native/button';
+import {PressableFeedback} from 'heroui-native/pressable-feedback';
+import {RadioGroup} from 'heroui-native/radio-group';
+import {Switch} from 'heroui-native/switch';
+import {useEffect, useImperativeHandle, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {View, type ViewStyle, useWindowDimensions} from 'react-native';
+import {View} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {
-  onSwitchTheme,
   setBaseURL,
   setLocker,
-  useAppColorScheme,
   useAppLanguage,
   useBaseURL,
   useLocker,
 } from 'stores';
-import {useFlatlistColumns} from 'utils';
-import {useAppTheme} from 'utils/themes';
-import {
-  Button,
-  RadioButtonGroup,
-  RadioButtonItem,
-  Switch,
-  Text,
-  TouchableRipple,
-} from '../paper';
+import {Uniwind, useUniwind} from 'uniwind';
+import {Text} from '../text';
 
 type SettingsModal = {
   open: () => void;
@@ -44,32 +29,33 @@ const baseURLs: TBaseURL[] = [
   'https://www.tokyobombers.com',
 ];
 
-const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
-  const appTheme = useAppColorScheme();
+export type SettingsModalRef = {
+  open: () => void;
+};
+
+type Props = {
+  ref: React.RefObject<SettingsModalRef>;
+};
+
+export const SettingsModal = ({ref}: Props) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const {theme, hasAdaptiveThemes} = useUniwind();
   const {t} = useTranslation();
-  const {colors} = useAppTheme();
   const locker = useLocker();
   const [isSensorAvailable, setIsSensorAvailable] = useState(false);
-  const modalRef = useRef<BottomSheetModal>(null);
-  const languageRef = useRef<LanguageModal>(null);
   const baseURL = useBaseURL();
   const [url, setUrl] = useState(baseURL);
   const appLanguage = useAppLanguage();
-  const insets = useSafeAreaInsets();
-  const bottomInset = insets.bottom || 24;
-  const {width} = useWindowDimensions();
-  const columns = useFlatlistColumns();
-  const containerStyle: ViewStyle = {
-    marginHorizontal: columns > 1 ? width / 4 : bottomInset,
-  };
-  const style: ViewStyle = {
-    width: columns > 1 ? width / 2 : width - bottomInset * 2,
-  };
-  const backgroundStyle: ViewStyle = {backgroundColor: colors.background};
-
-  useImperativeHandle(ref, () => ({
-    open: () => modalRef.current?.present(),
-  }));
+  const activeTheme = hasAdaptiveThemes ? 'system' : theme;
+  const themes: {
+    name: typeof activeTheme;
+    label: string;
+    icon: string;
+  }[] = [
+    {name: 'light', label: t('light'), icon: '☀️'},
+    {name: 'dark', label: t('dark'), icon: '🌙'},
+    {name: 'system', label: t('system'), icon: '⚙️'},
+  ];
 
   useEffect(() => {
     rnBiometrics.isSensorAvailable().then(resultObject => {
@@ -78,9 +64,11 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
     });
   }, []);
 
-  const showLanguageModal = () => {
-    languageRef.current?.open();
-  };
+  useImperativeHandle(ref, () => ({
+    open: () => {
+      setIsOpen(true);
+    },
+  }));
 
   const onChangeLocker = () => {
     if (locker === 'unavailable') {
@@ -95,61 +83,63 @@ const SettingsModal = forwardRef<SettingsModal>(({}, ref) => {
   };
 
   return (
-    <>
-      <BottomSheetModal
-        ref={modalRef}
-        detached
-        enableDynamicSizing
-        backdropComponent={CustomBackdrop}
-        backgroundStyle={backgroundStyle}
-        bottomInset={bottomInset}
-        containerStyle={containerStyle}
-        handleComponent={CustomHandle}
-        style={style}>
-        <BottomSheetView>
+    <BottomSheet isOpen={isOpen} onOpenChange={setIsOpen}>
+      <BottomSheet.Portal>
+        <BottomSheet.Overlay />
+        <BottomSheet.Content>
           <View className="m-1 rounded-3xl">
-            <Text className="px-3 pb-3" variant="titleLarge">
-              {t('tabs.tab2')}
-            </Text>
+            <Text className="px-3 pb-3">{t('tabs.tab2')}</Text>
             <Text className="p-3">Host</Text>
-            <RadioButtonGroup
-              value={url}
-              onValueChange={v => setUrl(v as TBaseURL)}>
+            <RadioGroup value={url} onValueChange={v => setUrl(v as TBaseURL)}>
               {baseURLs.map(b => (
-                <RadioButtonItem key={b} label={b} value={b} />
+                <RadioGroup.Item key={b} value={b}>
+                  {b}
+                </RadioGroup.Item>
               ))}
-            </RadioButtonGroup>
+            </RadioGroup>
             <View className="p-3">
-              <Button mode="contained" onPress={onPressApply}>
-                {t('apply')}
-              </Button>
+              <Button onPress={onPressApply}>{t('apply')}</Button>
             </View>
-            <TouchableRipple onPress={onSwitchTheme}>
-              <View className="flex-row justify-between p-3">
-                <Text>{t('theme')}</Text>
-                <Text>{t(appTheme)}</Text>
-              </View>
-            </TouchableRipple>
-            <TouchableRipple onPress={showLanguageModal}>
+            <View className="flex-row justify-between p-3">
+              <Text>{t('theme')}</Text>
+            </View>
+            {themes.map(th => (
+              <PressableFeedback
+                key={th.name}
+                className={`items-center rounded-lg px-4 py-3 ${
+                  activeTheme === th.name
+                    ? 'bg-blue-500'
+                    : 'bg-gray-200 dark:bg-gray-700'
+                } `}
+                onPress={() => Uniwind.setTheme(th.name)}>
+                <Text className="mb-1 text-2xl">{th.icon}</Text>
+                <Text
+                  className={`text-xs ${
+                    activeTheme === th.name
+                      ? 'text-white'
+                      : 'text-gray-900 dark:text-white'
+                  }`}>
+                  {th.label}
+                </Text>
+              </PressableFeedback>
+            ))}
+            <LanguageModal>
               <View className="flex-row justify-between p-3">
                 <Text>{t('language')}</Text>
                 <Text>{t(`lang.${appLanguage}`)}</Text>
               </View>
-            </TouchableRipple>
+            </LanguageModal>
             <View className="flex-row items-center justify-between p-3">
               <Text>{t('enable-locker')}</Text>
               <Switch
-                disabled={!isSensorAvailable}
-                value={locker !== 'unavailable'}
-                onChange={onChangeLocker}
+                isDisabled={!isSensorAvailable}
+                isSelected={locker !== 'unavailable'}
+                onSelectedChange={onChangeLocker}
               />
             </View>
           </View>
-        </BottomSheetView>
-      </BottomSheetModal>
-      <LanguageModal ref={languageRef} />
-    </>
+        </BottomSheet.Content>
+      </BottomSheet.Portal>
+    </BottomSheet>
   );
-});
-
-export default SettingsModal;
+};

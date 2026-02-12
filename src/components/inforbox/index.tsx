@@ -1,6 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
+import {Chip} from 'heroui-native/chip';
 import {View} from 'react-native';
-import {Chip, Text} from '../paper';
+import {Text} from '../text';
 
 type Props = {
   post: TPost;

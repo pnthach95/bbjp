@@ -14,9 +14,4 @@ module.exports = {
     ],
     'react-native-worklets/plugin',
   ],
-  env: {
-    production: {
-      plugins: ['react-native-paper/babel'],
-    },
-  },
 };

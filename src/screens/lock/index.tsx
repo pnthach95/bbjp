@@ -1,4 +1,4 @@
-import {Button} from 'components/paper';
+import {Button} from 'heroui-native/button';
 import {useEffect} from 'react';
 import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
