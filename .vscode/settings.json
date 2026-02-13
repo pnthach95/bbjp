@@ -1,9 +1,7 @@
 {
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
-  "editor.rulers": [
-    80
-  ],
+  "editor.rulers": [80],
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "files.eol": "\n",
@@ -18,10 +16,7 @@
     "END:"
   ],
   "todo-tree.general.tagGroups": {
-    "PROJECT": [
-      "START:",
-      "END:"
-    ]
+    "PROJECT": ["START:", "END:"]
   },
   "todo-tree.highlights.customHighlight": {
     "PROJECT": {
@@ -52,45 +47,22 @@
     "source.fixAll.eslint": "explicit"
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "taskexplorer.exclude": [
-    "**/.vscode-test/**",
-    "**/bin/**",
-    "**/build/**",
-    "**/CompiledOutput/**",
-    "**/dist/**",
-    "**/doc/**",
-    "**/ext/**",
-    "**/out/**",
-    "**/output/**",
-    "**/packages/**",
-    "**/release/**",
-    "**/releases/**",
-    "**/samples/**",
-    "**/sdks/**",
-    "**/static/**",
-    "**/target/**",
-    "**/test/**",
-    "**/third_party/**",
-    "**/vendor/**",
-    "**/android/**",
-    "**/ios/Pods/**",
-    "**/.husky/**"
-  ],
-  "i18n-ally.localesPaths": [
-    "src/locales"
-  ],
+  "i18n-ally.localesPaths": ["src/locales"],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sortKeys": true,
   "tailwindCSS.classAttributes": [
     "class",
     "className",
     "headerClassName",
+    "contentClassName",
     "contentContainerClassName",
     "columnWrapperClassName",
     "endFillColorClassName",
     "imageClassName",
+    "inputClassName",
     "tintColorClassName",
     "ios_backgroundColorClassName",
+    "textClassName",
     "thumbColorClassName",
     "trackColorOnClassName",
     "trackColorOffClassName",
@@ -99,12 +71,15 @@
     "underlineColorAndroidClassName",
     "placeholderTextColorClassName",
     "selectionHandleColorClassName",
+    "labelClassName",
     "colorsClassName",
     "rippleColorClassName",
     "progressBackgroundColorClassName",
     "titleColorClassName",
     "underlayColorClassName",
     "colorClassName",
+    "iconColorClassName",
+    "containerColorClassName",
     "drawerBackgroundColorClassName",
     "statusBarBackgroundColorClassName",
     "backdropColorClassName",
@@ -112,7 +87,5 @@
     "ListFooterComponentClassName",
     "ListHeaderComponentClassName"
   ],
-  "tailwindCSS.classFunctions": [
-    "useResolveClassNames"
-  ]
+  "tailwindCSS.classFunctions": ["useResolveClassNames"]
 }
