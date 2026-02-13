@@ -1,6 +1,7 @@
 import {StackActions, useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
 import {MaterialDesignIcons} from 'components/icons';
+import {Button} from 'heroui-native/button';
 import {Spinner} from 'heroui-native/spinner';
 import {useTranslation} from 'react-i18next';
 import {RefreshControl, View} from 'react-native';
@@ -19,6 +20,7 @@ type Props = {
   posts: TPost[];
   refreshing: boolean;
   loading?: boolean;
+  onPressLoadMore?: () => void;
   onEndReached?: () => void;
   onRefresh?: () => void;
   ListHeaderComponent?: FlashListProps<TPost>['ListHeaderComponent'];
@@ -31,6 +33,7 @@ const PostList = ({
   loading,
   onEndReached,
   onRefresh,
+  onPressLoadMore,
   ListHeaderComponent,
 }: Props) => {
   const {t} = useTranslation();
@@ -82,7 +85,14 @@ const PostList = ({
       ListFooterComponent={
         !refreshing && loading ? (
           <Spinner className="m-3 self-center" size="lg" />
-        ) : null
+        ) : onPressLoadMore ? (
+          <Button
+            className="m-3 self-center px-20"
+            variant="secondary"
+            onPress={onPressLoadMore}>
+            Load more
+          </Button>
+        ) : undefined
       }
       ListHeaderComponent={ListHeaderComponent}
       numColumns={columns}

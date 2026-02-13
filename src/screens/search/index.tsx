@@ -92,6 +92,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
 
     const onPressItem = () => {
       searchRef.current?.blur();
+      searchRef.current?.setText(item);
       setValue(item);
       onSubmit(item);
     };
@@ -142,6 +143,9 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
       posts={posts}
       refreshing={refreshing}
       onEndReached={onEndReached}
+      onPressLoadMore={
+        isEndList.current || posts.length === 0 ? undefined : onEndReached
+      }
       onRefresh={onSubmit}
     />
   );

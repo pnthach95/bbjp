@@ -80,6 +80,7 @@ const HomeScreen = ({route}: RootStackScreenProps<'Main'>) => {
       posts={posts}
       refreshing={refreshing}
       onEndReached={onEndReached}
+      onPressLoadMore={isEndList.current ? undefined : onEndReached}
       onRefresh={onRefresh}
     />
   );
