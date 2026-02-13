@@ -8,21 +8,6 @@ import {showMessage} from 'react-native-flash-message';
 import {PERMISSIONS, RESULTS, check, request} from 'react-native-permissions';
 import type {PermissionStatus} from 'react-native-permissions';
 
-export const DATE_FORMAT = {
-  SERVER: {
-    FULL: 'YYYY-MM-DD HH:mm:ss',
-    DATE: 'YYYY-MM-DD',
-  },
-  CLIENT: {
-    FULL: 'HH:mm DD/MM/YYYY',
-    DATE: 'DD/MM/YYYY',
-  },
-};
-
-export function capitalizeFirstLetter(string: string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
 export const openLink = (link?: string) => {
   try {
     if (link) {
@@ -189,7 +174,7 @@ export const useImageColumns = () => {
     return 3;
   }
   if (width >= 1024) {
-    return 2;
+    return 3;
   }
   if (width >= 768) {
     return 2;
