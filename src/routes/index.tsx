@@ -31,12 +31,7 @@ const App = () => {
   useEffect(() => {
     const init = async () => {
       try {
-        await ScreenGuardModule.initSettings({
-          displayScreenGuardOverlay: true,
-          timeAfterResume: 2000,
-          getScreenshotPath: true,
-        });
-        ScreenGuardModule.registerWithBlurView({radius: 20});
+        await ScreenGuardModule.registerWithBlurView({radius: 20});
       } catch (error) {
         if (__DEV__) {
           // eslint-disable-next-line no-console
@@ -46,11 +41,6 @@ const App = () => {
     };
 
     init();
-
-    // Cleanup on unmount
-    return () => {
-      ScreenGuardModule.unregister();
-    };
   }, []);
 
   useEffect(() => {

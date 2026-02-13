@@ -4,9 +4,10 @@ import PostList from 'components/postlist';
 import {Text} from 'components/text';
 import {Button} from 'heroui-native/button';
 import {Chip} from 'heroui-native/chip';
-import {useLayoutEffect, useRef, useState} from 'react';
+import {Input} from 'heroui-native/input';
+import {useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {FlatList} from 'react-native';
+import {FlatList, View} from 'react-native';
 import {
   onAddNewSearchKeyword,
   onDeleteAllSearchKeyword,
@@ -16,11 +17,9 @@ import {
 import {postParser} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
 import type {FlashListRef} from '@shopify/flash-list';
-import type {ListRenderItem} from 'react-native';
-import type {SearchBarCommands} from 'react-native-screens';
-import type {RootStackScreenProps} from 'typings/navigation';
+import type {ListRenderItem, TextInput} from 'react-native';
 
-const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
+const SearchScreen = () => {
   const searchKeywords = useSearchKeywords();
   const {t} = useTranslation();
   const container = useSafeAreaPaddingBottom(0);
@@ -28,19 +27,10 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
   const [posts, setPosts] = useState<TPost[]>([]);
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
-  const searchRef = useRef<SearchBarCommands>(null);
+  const searchRef = useRef<TextInput>(null);
   const postListRef = useRef<FlashListRef<TPost>>(null);
   const page = useRef(1);
   const isEndList = useRef(false);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerSearchBarOptions: {
-        ref: searchRef,
-        onSearchButtonPress: event => onSubmit(event?.nativeEvent?.text),
-      },
-    });
-  }, [navigation]);
 
   const getData = async (s: string, p: number) => {
     const link = p === 1 ? LINKS.HOME : LINKS.PAGE + `${p}/`;
@@ -70,13 +60,13 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
     }
   };
 
-  const onSubmit = async (v = value) => {
-    if (v) {
-      onAddNewSearchKeyword(v);
+  const onSubmit = async () => {
+    if (value) {
+      onAddNewSearchKeyword(value);
       setRefreshing(true);
       page.current = 1;
       isEndList.current = false;
-      await getData(v, 1);
+      await getData(value, 1);
     }
   };
 
@@ -92,9 +82,8 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
 
     const onPressItem = () => {
       searchRef.current?.blur();
-      searchRef.current?.setText(item);
       setValue(item);
-      onSubmit(item);
+      onSubmit();
     };
 
     return (
@@ -125,29 +114,46 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
       : undefined;
 
   return (
-    <PostList
-      ListHeaderComponent={
-        <FlatList
-          horizontal
-          contentContainerClassName="items-center gap-3 px-3 py-1"
-          contentContainerStyle={container}
-          data={searchKeywords}
-          keyboardShouldPersistTaps="always"
-          ListHeaderComponent={listHeader}
-          renderItem={renderSearchKeyword}
-          showsHorizontalScrollIndicator={false}
+    <>
+      <View className="flex-row gap-3 px-3 py-1">
+        <Input
+          ref={searchRef}
+          autoFocus
+          autoCapitalize="words"
+          autoCorrect={false}
+          className="flex-1"
+          placeholder="Search"
+          onChangeText={setValue}
+          onSubmitEditing={onSubmit}
         />
-      }
-      loading={loading}
-      postListRef={postListRef}
-      posts={posts}
-      refreshing={refreshing}
-      onEndReached={onEndReached}
-      onPressLoadMore={
-        isEndList.current || posts.length === 0 ? undefined : onEndReached
-      }
-      onRefresh={onSubmit}
-    />
+        <Button isIconOnly variant="tertiary" onPress={onSubmit}>
+          <MaterialDesignIcons color="white" name="magnify" size={24} />
+        </Button>
+      </View>
+      <PostList
+        ListHeaderComponent={
+          <FlatList
+            horizontal
+            contentContainerClassName="items-center gap-3 px-3 py-1"
+            contentContainerStyle={container}
+            data={searchKeywords}
+            keyboardShouldPersistTaps="always"
+            ListHeaderComponent={listHeader}
+            renderItem={renderSearchKeyword}
+            showsHorizontalScrollIndicator={false}
+          />
+        }
+        loading={loading}
+        postListRef={postListRef}
+        posts={posts}
+        refreshing={refreshing}
+        onEndReached={onEndReached}
+        onPressLoadMore={
+          isEndList.current || posts.length === 0 ? undefined : onEndReached
+        }
+        onRefresh={onSubmit}
+      />
+    </>
   );
 };
 

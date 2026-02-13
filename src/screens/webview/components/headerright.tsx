@@ -11,7 +11,7 @@ type Props = {
 const HeaderRight = ({title, url}: Props) => {
   return (
     <Select>
-      <Select.Trigger>
+      <Select.Trigger variant="unstyled">
         <MaterialDesignIcons
           colorClassName="accent-foreground"
           name="dots-horizontal"

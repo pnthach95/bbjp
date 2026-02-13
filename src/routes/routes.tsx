@@ -16,7 +16,7 @@ import {Button} from 'heroui-native/button';
 import {AnimatePresence, MotiView} from 'moti';
 import {useEffect, useRef, useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Platform, StatusBar} from 'react-native';
+import {Platform, StatusBar, View} from 'react-native';
 import ReactNativeBiometrics from 'react-native-biometrics';
 import BootSplash from 'react-native-bootsplash';
 import GalleryScreen from 'screens/gallery';
@@ -101,14 +101,28 @@ const Routes = () => {
               ],
               headerRight: ({tintColor}) => {
                 return (
-                  <>
-                    <Button isIconOnly onPress={onPressSearch}>
-                      <MaterialDesignIcons color={tintColor} name="magnify" />
+                  <View className="flex-row gap-3">
+                    <Button
+                      isIconOnly
+                      variant="tertiary"
+                      onPress={onPressSearch}>
+                      <MaterialDesignIcons
+                        color={tintColor}
+                        name="magnify"
+                        size={24}
+                      />
                     </Button>
-                    <Button isIconOnly onPress={onPressSettings}>
-                      <MaterialDesignIcons color={tintColor} name="cog" />
+                    <Button
+                      isIconOnly
+                      variant="tertiary"
+                      onPress={onPressSettings}>
+                      <MaterialDesignIcons
+                        color={tintColor}
+                        name="cog"
+                        size={24}
+                      />
                     </Button>
-                  </>
+                  </View>
                 );
               },
             };
@@ -138,8 +152,12 @@ const Routes = () => {
               headerRight: link
                 ? () => {
                     return (
-                      <Button isIconOnly onPress={onPress}>
-                        <MaterialDesignIcons name="web" />
+                      <Button isIconOnly variant="tertiary" onPress={onPress}>
+                        <MaterialDesignIcons
+                          color="white"
+                          name="web"
+                          size={24}
+                        />
                       </Button>
                     );
                   }
@@ -167,15 +185,11 @@ const Routes = () => {
             },
           }) => ({title})}
         />
-        <RootStack.Screen
-          component={SearchScreen}
-          name="Search"
-          options={{headerSearchBarOptions: {autoCapitalize: 'words'}}}
-        />
+        <RootStack.Screen component={SearchScreen} name="Search" />
         <RootStack.Screen
           component={GalleryScreen}
           name="Gallery"
-          options={{headerShown: false}}
+          options={{headerShown: false, animation: 'fade'}}
         />
       </RootStack.Navigator>
       <SettingsModal ref={settingsRef} />

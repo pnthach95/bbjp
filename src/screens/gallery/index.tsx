@@ -87,12 +87,8 @@ const GalleryScreen = ({
             <Text className="text-base font-semibold text-white">
               {idx + 1} / {images.length}
             </Text>
-            <Button isIconOnly onPress={onPressDownload}>
-              <MaterialDesignIcons
-                colorClassName="accent-white"
-                name="download"
-                size={32}
-              />
+            <Button isIconOnly variant="ghost" onPress={onPressDownload}>
+              <MaterialDesignIcons color="white" name="download" size={24} />
             </Button>
           </View>
         </Animated.View>

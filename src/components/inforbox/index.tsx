@@ -24,7 +24,7 @@ const InforBox = ({post}: Props) => {
           };
 
           return (
-            <Chip key={c.name} onPress={onPress}>
+            <Chip key={c.name} variant="secondary" onPress={onPress}>
               {c.name}
             </Chip>
           );
