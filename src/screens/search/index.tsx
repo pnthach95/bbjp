@@ -15,7 +15,7 @@ import {
 } from 'stores';
 import {postParser} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
-import type {LegendListRef} from '@legendapp/list';
+import type {FlashListRef} from '@shopify/flash-list';
 import type {ListRenderItem} from 'react-native';
 import type {SearchBarCommands} from 'react-native-screens';
 import type {RootStackScreenProps} from 'typings/navigation';
@@ -29,7 +29,7 @@ const SearchScreen = ({navigation}: RootStackScreenProps<'Search'>) => {
   const [refreshing, setRefreshing] = useState(false);
   const [loading, setLoading] = useState(false);
   const searchRef = useRef<SearchBarCommands>(null);
-  const postListRef = useRef<LegendListRef>(null);
+  const postListRef = useRef<FlashListRef<TPost>>(null);
   const page = useRef(1);
   const isEndList = useRef(false);
 

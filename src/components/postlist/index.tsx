@@ -1,5 +1,5 @@
-import {LegendList} from '@legendapp/list';
 import {StackActions, useNavigation} from '@react-navigation/native';
+import {FlashList} from '@shopify/flash-list';
 import {MaterialDesignIcons} from 'components/icons';
 import {Spinner} from 'heroui-native/spinner';
 import {useTranslation} from 'react-i18next';
@@ -9,19 +9,19 @@ import {useSafeAreaPaddingBottom} from 'utils/styles';
 import {Text} from '../text';
 import {PostItem} from './item';
 import type {
-  LegendListProps,
-  LegendListRef,
-  LegendListRenderItemProps,
-} from '@legendapp/list';
+  FlashListProps,
+  FlashListRef,
+  ListRenderItem,
+} from '@shopify/flash-list';
 
 type Props = {
-  postListRef?: React.Ref<LegendListRef>;
+  postListRef?: React.Ref<FlashListRef<TPost>>;
   posts: TPost[];
   refreshing: boolean;
   loading?: boolean;
   onEndReached?: () => void;
   onRefresh?: () => void;
-  ListHeaderComponent?: LegendListProps['ListHeaderComponent'];
+  ListHeaderComponent?: FlashListProps<TPost>['ListHeaderComponent'];
 };
 
 const PostList = ({
@@ -47,7 +47,7 @@ const PostList = ({
     />
   );
 
-  const renderItem = ({item}: LegendListRenderItemProps<TPost>) => {
+  const renderItem: ListRenderItem<TPost> = ({item}) => {
     const onPress = () => {
       if (item.link) {
         navigation.navigate('Post', {post: item});
@@ -61,22 +61,23 @@ const PostList = ({
   };
 
   return (
-    <LegendList
+    <FlashList
       ref={postListRef}
-      recycleItems
       contentContainerStyle={style}
       contentInsetAdjustmentBehavior="automatic"
       data={posts}
       keyExtractor={({key}) => key}
       ListEmptyComponent={
-        <View className="flex-1 items-center justify-center pt-5">
-          <MaterialDesignIcons
-            colorClassName="accent-danger"
-            name="alert"
-            size={70}
-          />
-          <Text>{t('not-found')}</Text>
-        </View>
+        loading || refreshing ? undefined : (
+          <View className="flex-1 items-center justify-center pt-5">
+            <MaterialDesignIcons
+              colorClassName="accent-danger"
+              name="alert"
+              size={70}
+            />
+            <Text>{t('not-found')}</Text>
+          </View>
+        )
       }
       ListFooterComponent={
         !refreshing && loading ? (

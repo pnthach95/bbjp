@@ -2316,18 +2316,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@legendapp/list@npm:^2.0.19":
-  version: 2.0.19
-  resolution: "@legendapp/list@npm:2.0.19"
-  dependencies:
-    use-sync-external-store: "npm:^1.5.0"
-  peerDependencies:
-    react: "*"
-    react-native: "*"
-  checksum: 10/f59312533adebbb668a48505d397962f4fecd1c96737a93a42aa0192d53e9cd30bbf1f5fa92ed0eeb13907ba22d2a99e25708de71491700462241638a7f83380
-  languageName: node
-  linkType: hard
-
 "@motionone/animation@npm:^10.12.0":
   version: 10.18.0
   resolution: "@motionone/animation@npm:10.18.0"
@@ -3037,6 +3025,17 @@ __metadata:
   version: 1.1.0
   resolution: "@rtsao/scc@npm:1.1.0"
   checksum: 10/17d04adf404e04c1e61391ed97bca5117d4c2767a76ae3e879390d6dec7b317fcae68afbf9e98badee075d0b64fa60f287729c4942021b4d19cd01db77385c01
+  languageName: node
+  linkType: hard
+
+"@shopify/flash-list@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "@shopify/flash-list@npm:2.2.2"
+  peerDependencies:
+    "@babel/runtime": "*"
+    react: "*"
+    react-native: "*"
+  checksum: 10/eee3b247af0228a0ccc51e637b145dc4609da75e0b1c2fe4732fa3ff1cb8921d0bcde1183f8c83993638085dce9b376fdedf1dda0c2d9c33d61804f4bc243257
   languageName: node
   linkType: hard
 
@@ -4274,7 +4273,6 @@ __metadata:
     "@babel/runtime": "npm:^7.25.0"
     "@baronha/ting": "npm:^1.2.3"
     "@gorhom/bottom-sheet": "npm:^5.2.8"
-    "@legendapp/list": "npm:^2.0.19"
     "@react-native-camera-roll/camera-roll": "npm:^7.10.2"
     "@react-native-community/cli": "npm:20.0.2"
     "@react-native-community/cli-platform-android": "npm:20.0.2"
@@ -4287,6 +4285,7 @@ __metadata:
     "@react-native/typescript-config": "npm:0.83.2"
     "@react-navigation/native": "npm:^7.1.28"
     "@react-navigation/native-stack": "npm:^7.12.0"
+    "@shopify/flash-list": "npm:^2.2.2"
     "@stylistic/eslint-plugin": "npm:^5.8.0"
     "@types/jest": "npm:^29.5.13"
     "@types/react": "npm:^19.2.0"

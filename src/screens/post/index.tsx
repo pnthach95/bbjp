@@ -1,17 +1,13 @@
-import {LegendList, type LegendListRenderItemProps} from '@legendapp/list';
+import {FlashList, type ListRenderItem} from '@shopify/flash-list';
 import IDOMParser from 'advanced-html-parser';
 import InforBox from 'components/inforbox';
 import {Spinner} from 'heroui-native/spinner';
 import {useEffect, useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {View} from 'react-native';
 import {useImageColumns} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
 import PostImg from './components/img';
 import type {RootStackScreenProps} from 'typings/navigation';
-
-const styles = StyleSheet.create({
-  columnWrapperStyle: {gap: 12},
-});
 
 const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
   const {post} = route.params;
@@ -53,7 +49,7 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
     }
   };
 
-  const renderItem = ({item, index}: LegendListRenderItemProps<string>) => {
+  const renderItem: ListRenderItem<string> = ({item, index}) => {
     const onPress = () => {
       navigation.navigate('Gallery', {idx: index, images: imgs});
     };
@@ -71,11 +67,10 @@ const PostScreen = ({navigation, route}: RootStackScreenProps<'Post'>) => {
   };
 
   return (
-    <LegendList
+    <FlashList
       automaticallyAdjustContentInsets
       automaticallyAdjustsScrollIndicatorInsets
-      recycleItems
-      columnWrapperStyle={styles.columnWrapperStyle}
+      masonry
       contentContainerStyle={container}
       contentInsetAdjustmentBehavior="automatic"
       data={imgs}
