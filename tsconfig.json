@@ -3,7 +3,7 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    ".eslintrc.js",
+    "eslint.config.js",
     "index.js",
     "react-native.config.js",
     "ReactotronConfig.js",
@@ -11,19 +11,14 @@
     "scripts/**/*",
     "src/**/*"
   ],
-  "exclude": [
-    "**/node_modules",
-    "**/Pods"
-  ],
+  "exclude": ["**/node_modules", "**/Pods"],
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
     /* Completeness */
-    "baseUrl": "./",
     "paths": {
-      "*": [
-        "src/*"
-      ]
+      "*": ["./src/*"]
     },
-    "verbatimModuleSyntax": true,
+    "types": ["jest"],
+    "verbatimModuleSyntax": true
   }
 }

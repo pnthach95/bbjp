@@ -1,7 +1,7 @@
 import {Spinner} from 'heroui-native/spinner';
+import {Typography} from 'heroui-native/text';
 import {View} from 'react-native';
-import {MaterialDesignIcons} from '../icons';
-import {Text} from '../text';
+import {MaterialDesignIcons} from '../uniwind';
 
 type Props = {
   errorText: string;
@@ -17,7 +17,7 @@ const Loading = ({errorText}: Props) => (
           size={50}
           style={{transform: [{rotate: '90deg'}]}}
         />
-        <Text className="text-lg text-danger">{errorText}</Text>
+        <Typography className="text-lg text-danger">{errorText}</Typography>
       </>
     ) : (
       <Spinner size="lg" />

@@ -1,0 +1,30 @@
+diff --git a/android/src/main/java/com/ReactNativeBlobUtil/Response/ReactNativeBlobUtilFileResp.java b/android/src/main/java/com/ReactNativeBlobUtil/Response/ReactNativeBlobUtilFileResp.java
+index a98bde3778a1b7774b49f74d025516e73c6c0e19..afbef4ae863c3d13673ecf14d88d6ae775e7bb8c 100644
+--- a/android/src/main/java/com/ReactNativeBlobUtil/Response/ReactNativeBlobUtilFileResp.java
++++ b/android/src/main/java/com/ReactNativeBlobUtil/Response/ReactNativeBlobUtilFileResp.java
+@@ -89,11 +89,11 @@ public class ReactNativeBlobUtilFileResp extends ResponseBody {
+     public long contentLength() {
+ 
+         /**
+-         * 
++         *
+          * Okio buffer issue in current version seems to be fixed in the latest versions
+-         * 
++         *
+          * limiting this was causing the download progress to stop at 2GB size but files still was downloading
+-         * 
++         *
+          */
+ 
+         // if (originalBody.contentLength() > Integer.MAX_VALUE) {
+@@ -123,6 +123,10 @@ public class ReactNativeBlobUtilFileResp extends ResponseBody {
+                 bytesDownloaded += read > 0 ? read : 0;
+                 if (read > 0) {
+                     ofStream.write(bytes, 0, (int) read);
++                    // Okio Source contract: bytes reported as read MUST land in `sink`.
++                    // Leaving it empty makes the downstream BufferedSource see EOF after
++                    // one segment, truncating every known-length download.
++                    sink.write(bytes, 0, (int) read);
+                 } else if (contentLength() == -1 && read == -1) {
+                     // End marker has been received for chunked download
+                     isEndMarkerReceived = true;

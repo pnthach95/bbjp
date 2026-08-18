@@ -1,8 +1,8 @@
-import {Text} from 'components/text';
 import {BottomSheet} from 'heroui-native/bottom-sheet';
 import {Button} from 'heroui-native/button';
 import {PressableFeedback} from 'heroui-native/pressable-feedback';
 import {Surface} from 'heroui-native/surface';
+import {Typography} from 'heroui-native/text';
 import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
@@ -28,8 +28,8 @@ const LanguageModal = () => {
         <PressableFeedback>
           <PressableFeedback.Ripple />
           <Surface className="flex-row justify-between" variant="secondary">
-            <Text>{t('language')}</Text>
-            <Text>{t(`lang.${appLanguage}`)}</Text>
+            <Typography>{t('language')}</Typography>
+            <Typography>{t(`lang.${appLanguage}`)}</Typography>
           </Surface>
         </PressableFeedback>
       </BottomSheet.Trigger>

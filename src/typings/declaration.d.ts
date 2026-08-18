@@ -16,3 +16,5 @@ declare module '*.webp' {
 }
 
 declare module '*.json';
+
+declare module '*.css';

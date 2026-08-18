@@ -98,13 +98,11 @@ export const useHydration = () => {
     const unsubHydrate = useAppStore.persist.onHydrate(() =>
       setHydrated(false),
     );
-    const unsubFinishHydration = useAppStore.persist.onFinishHydration(
-      ({appTheme}) => {
-        setHydrated(true);
-        Uniwind.setTheme(appTheme);
-      },
-    );
+    const unsubFinishHydration = useAppStore.persist.onFinishHydration(() => {
+      setHydrated(true);
+    });
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHydrated(useAppStore.persist.hasHydrated());
 
     return () => {

@@ -1,11 +1,11 @@
 import {getAverageColor} from '@somesoap/react-native-image-palette';
 import {Chip} from 'heroui-native/chip';
 import {PressableFeedback} from 'heroui-native/pressable-feedback';
+import {Typography} from 'heroui-native/text';
 import {useEffect, useState} from 'react';
 import {View} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import Image from 'react-native-turbo-image';
-import {Text} from '../text';
 
 type Props = {
   item: TPost;
@@ -36,16 +36,16 @@ export const PostItem = ({onPress, onPressTag, item}: Props) => {
           colors={[gradientColor, 'transparent']}
           locations={[0.5, 1]}>
           <View className="p-3">
-            <Text className="text-white">{item.time}</Text>
+            <Typography className="text-white">{item.time}</Typography>
           </View>
         </LinearGradient>
         <LinearGradient
           colors={['transparent', gradientColor]}
           locations={[0, 0.5]}>
           <View className="p-3">
-            <Text selectable className="text-xl text-white">
+            <Typography selectable className="text-xl text-white">
               {item.title}
-            </Text>
+            </Typography>
             <View className="flex-row flex-wrap items-center gap-3 pt-3">
               {[...item.cats, ...item.tags].map(c => {
                 const onPressItem = () => {

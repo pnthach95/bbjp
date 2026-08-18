@@ -1,13 +1,13 @@
 import {StackActions, useNavigation} from '@react-navigation/native';
 import {FlashList} from '@shopify/flash-list';
-import {MaterialDesignIcons} from 'components/icons';
+import {MaterialDesignIcons} from 'components/uniwind';
 import {Button} from 'heroui-native/button';
 import {Spinner} from 'heroui-native/spinner';
+import {Typography} from 'heroui-native/text';
 import {useTranslation} from 'react-i18next';
 import {RefreshControl, View} from 'react-native';
 import {useFlatlistColumns} from 'utils';
 import {useSafeAreaPaddingBottom} from 'utils/styles';
-import {Text} from '../text';
 import {PostItem} from './item';
 import type {
   FlashListProps,
@@ -43,9 +43,9 @@ const PostList = ({
 
   const RC = (
     <RefreshControl
-      colorsClassName="accent-primary"
+      colorsClassName="accent-accent"
       refreshing={refreshing}
-      tintColorClassName="accent-primary"
+      tintColorClassName="accent-accent"
       onRefresh={onRefresh}
     />
   );
@@ -78,7 +78,7 @@ const PostList = ({
               name="alert"
               size={70}
             />
-            <Text>{t('not-found')}</Text>
+            <Typography>{t('not-found')}</Typography>
           </View>
         )
       }

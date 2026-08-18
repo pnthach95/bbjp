@@ -31,6 +31,7 @@ const App = () => {
   useEffect(() => {
     const init = async () => {
       try {
+        await ScreenGuardModule.initSettings();
         await ScreenGuardModule.registerWithBlurView({radius: 20});
       } catch (error) {
         if (__DEV__) {

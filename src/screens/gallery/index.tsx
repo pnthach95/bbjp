@@ -1,13 +1,13 @@
 import {useIsFocused} from '@react-navigation/native';
-import {MaterialDesignIcons} from 'components/icons';
-import {Text} from 'components/text';
+import {MaterialDesignIcons, TurboImage} from 'components/uniwind';
 import {Button} from 'heroui-native/button';
+import {Typography} from 'heroui-native/text';
 import {useCallback, useEffect, useRef, useState} from 'react';
-import {StatusBar, StyleSheet, View} from 'react-native';
+import {StatusBar, View} from 'react-native';
 import AwesomeGallery from 'react-native-awesome-gallery';
 import Animated, {FadeInUp, FadeOutUp} from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import Image from 'react-native-turbo-image';
+import {useUniwind} from 'uniwind';
 import {onDownloadImage} from 'utils';
 import type {GalleryRef, RenderItemInfo} from 'react-native-awesome-gallery';
 import type {RootStackScreenProps} from 'typings/navigation';
@@ -17,12 +17,10 @@ const renderItem = ({
   setImageDimensions,
 }: RenderItemInfo<{uri: string}>) => {
   return (
-    <Image
-      resizeMode="contain"
+    <TurboImage
+      className="absolute top-0 right-0 bottom-0 left-0"
       source={{uri: item.uri}}
-      style={StyleSheet.absoluteFill}
-      onSuccess={e => {
-        const {width, height} = e.nativeEvent;
+      onSuccess={({nativeEvent: {height, width}}) => {
         setImageDimensions({width, height});
       }}
     />
@@ -31,18 +29,14 @@ const renderItem = ({
 
 const GalleryScreen = ({
   navigation,
-  route,
+  route: {
+    params: {idx, images},
+  },
 }: RootStackScreenProps<'Gallery'>) => {
-  const {idx, images} = route.params;
+  const {theme} = useUniwind();
   const {top} = useSafeAreaInsets();
   const isFocused = useIsFocused();
   const gallery = useRef<GalleryRef>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   const [infoVisible, setInfoVisible] = useState(true);
 
   useEffect(() => {
@@ -50,6 +44,11 @@ const GalleryScreen = ({
     if (!isFocused) {
       StatusBar.setHidden(false, 'fade');
     }
+    return () => {
+      StatusBar.setBarStyle(
+        theme === 'dark' ? 'light-content' : 'dark-content',
+      );
+    };
   }, [isFocused]);
 
   const onIndexChange = useCallback(
@@ -58,7 +57,7 @@ const GalleryScreen = ({
         navigation.setParams({idx: index});
       }
     },
-    [isFocused],
+    [isFocused, navigation],
   );
 
   const onTap = () => {
@@ -77,16 +76,16 @@ const GalleryScreen = ({
       {infoVisible && (
         <Animated.View
           className="absolute z-10 w-full bg-black/50"
-          entering={mounted ? FadeInUp.duration(250) : undefined}
+          entering={FadeInUp.duration(250)}
           exiting={FadeOutUp.duration(250)}
           style={{
             height: top + 60,
             paddingTop: top,
           }}>
           <View className="flex-1 flex-row items-center justify-between px-3">
-            <Text className="text-base font-semibold text-white">
+            <Typography className="text-white" weight="semibold">
               {idx + 1} / {images.length}
-            </Text>
+            </Typography>
             <Button isIconOnly variant="ghost" onPress={onPressDownload}>
               <MaterialDesignIcons color="white" name="download" size={24} />
             </Button>

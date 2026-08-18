@@ -6,8 +6,8 @@ import {
   NavigationContainer,
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {MaterialDesignIcons} from 'components/icons';
 import {SettingsModal, type SettingsModalRef} from 'components/settingsmodal';
+import {MaterialDesignIcons} from 'components/uniwind';
 import dayjs from 'dayjs';
 import customParseFormat from 'dayjs/plugin/customParseFormat';
 import duration from 'dayjs/plugin/duration';
@@ -25,8 +25,8 @@ import LockScreen from 'screens/lock';
 import PostScreen from 'screens/post';
 import SearchScreen from 'screens/search';
 import WebViewScreen from 'screens/webview';
-import {setLocker, useLocker} from 'stores';
-import {useUniwind} from 'uniwind';
+import {setLocker, useAppTheme, useLocker} from 'stores';
+import {Uniwind, useUniwind} from 'uniwind';
 import type {RootStackParamList} from 'typings/navigation';
 
 dayjs.extend(localizedFormat);
@@ -42,8 +42,9 @@ const Routes = () => {
   const appState = useAppState();
   const settingsRef = useRef<SettingsModalRef>({open: () => {}});
   const [isSensorAvailable, setIsSensorAvailable] = useState(false);
-  const {theme, hasAdaptiveThemes} = useUniwind();
-  const activeTheme = hasAdaptiveThemes ? 'system' : theme;
+  const appTheme = useAppTheme();
+  const {theme} = useUniwind();
+  const finalTheme = appTheme === 'system' ? theme : appTheme;
 
   useEffect(() => {
     rnBiometrics.isSensorAvailable().then(resultObject => {
@@ -51,6 +52,10 @@ const Routes = () => {
       setIsSensorAvailable(available);
     });
   }, []);
+
+  useEffect(() => {
+    Uniwind.setTheme(finalTheme);
+  }, [finalTheme]);
 
   useEffect(() => {
     if (
@@ -68,9 +73,13 @@ const Routes = () => {
 
   return (
     <NavigationContainer
-      theme={activeTheme === 'dark' ? DarkTheme : DefaultTheme}
+      theme={finalTheme === 'dark' ? DarkTheme : DefaultTheme}
       onReady={onReady}>
-      <StatusBar translucent backgroundColor="transparent" />
+      <StatusBar
+        translucent
+        backgroundColor="transparent"
+        barStyle={finalTheme === 'dark' ? 'light-content' : 'dark-content'}
+      />
       <RootStack.Navigator>
         <RootStack.Screen
           component={HomeScreen}

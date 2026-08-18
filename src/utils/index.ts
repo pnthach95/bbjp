@@ -117,7 +117,7 @@ export const onDownloadImage = async (
           type: 'photo',
         });
       } else {
-        BlobUtil.MediaCollection.copyToMediaStore(
+        await BlobUtil.MediaCollection.copyToMediaStore(
           {name: filename, parentFolder: 'bbjp', mimeType: 'image/jpg'},
           'Download',
           response.path(),
@@ -139,7 +139,7 @@ export const onDownloadImage = async (
       } else {
         alert({
           title: i18n.t('save-image.title'),
-          message: i18n.t('save-image.failed'),
+          message: error.message ?? i18n.t('save-image.failed'),
           preset: 'error',
           haptic: 'error',
         });

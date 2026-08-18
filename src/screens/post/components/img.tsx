@@ -1,6 +1,6 @@
-import {Text} from 'components/text';
 import {PressableFeedback} from 'heroui-native/pressable-feedback';
 import {Spinner} from 'heroui-native/spinner';
+import {Typography} from 'heroui-native/text';
 import {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Platform, StyleSheet, View} from 'react-native';
@@ -38,8 +38,8 @@ const PostImg = ({item, onPress}: Props) => {
   if (error) {
     return (
       <View className="items-center justify-center">
-        <Text className="text-danger">{t('server-error')}</Text>
-        <Text>{item}</Text>
+        <Typography className="text-danger">{t('server-error')}</Typography>
+        <Typography>{item}</Typography>
       </View>
     );
   }

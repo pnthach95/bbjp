@@ -1,6 +1,6 @@
-import {MaterialDesignIcons} from 'components/icons';
-import {Text} from 'components/text';
+import {MaterialDesignIcons} from 'components/uniwind';
 import {Select} from 'heroui-native/select';
+import {Typography} from 'heroui-native/text';
 import {View} from 'react-native';
 
 type Props = {
@@ -23,12 +23,12 @@ const HeaderRight = ({title, url}: Props) => {
         <Select.Content presentation="popover">
           {!!title && (
             <View className="p-3">
-              <Text>{title}</Text>
+              <Typography>{title}</Typography>
             </View>
           )}
           {!!url && (
             <View className="p-3">
-              <Text>{url}</Text>
+              <Typography>{url}</Typography>
             </View>
           )}
         </Select.Content>

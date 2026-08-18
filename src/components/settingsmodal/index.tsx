@@ -4,6 +4,7 @@ import {Button} from 'heroui-native/button';
 import {RadioGroup} from 'heroui-native/radio-group';
 import {Surface} from 'heroui-native/surface';
 import {Switch} from 'heroui-native/switch';
+import {Typography} from 'heroui-native/text';
 import {useEffect, useImperativeHandle, useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {View} from 'react-native';
@@ -12,11 +13,10 @@ import {
   setAppTheme,
   setBaseURL,
   setLocker,
+  useAppTheme,
   useBaseURL,
   useLocker,
 } from 'stores';
-import {useUniwind} from 'uniwind';
-import {Text} from '../text';
 
 type SettingsModal = {
   open: () => void;
@@ -39,20 +39,19 @@ type Props = {
 
 export const SettingsModal = ({ref}: Props) => {
   const [isOpen, setIsOpen] = useState(false);
-  const {theme, hasAdaptiveThemes} = useUniwind();
   const {t} = useTranslation();
   const locker = useLocker();
   const [isSensorAvailable, setIsSensorAvailable] = useState(false);
   const baseURL = useBaseURL();
   const [url, setUrl] = useState(baseURL);
-  const activeTheme = hasAdaptiveThemes ? 'system' : theme;
+  const activeTheme = useAppTheme();
   const themes: {
     name: TAppTheme;
     label: string;
   }[] = [
-    {name: 'light', label: `☀️ ${t('light')}`},
-    {name: 'dark', label: `🌙 ${t('dark')}`},
-    {name: 'system', label: `⚙️ ${t('system')}`},
+    {name: 'light', label: t('light')},
+    {name: 'dark', label: t('dark')},
+    {name: 'system', label: t('system')},
   ];
 
   useEffect(() => {
@@ -88,7 +87,9 @@ export const SettingsModal = ({ref}: Props) => {
           <View className="gap-3">
             <BottomSheet.Title>{t('tabs.tab2')}</BottomSheet.Title>
             <Surface className="gap-3" variant="secondary">
-              <Text className="text-lg font-medium text-foreground">Host</Text>
+              <Typography className="text-lg font-medium text-foreground">
+                Host
+              </Typography>
               <RadioGroup
                 value={url}
                 onValueChange={v => setUrl(v as TBaseURL)}>
@@ -101,12 +102,14 @@ export const SettingsModal = ({ref}: Props) => {
               <Button onPress={onPressApply}>{t('apply')}</Button>
             </Surface>
             <Surface className="gap-3" variant="secondary">
-              <Text className="text-lg font-medium text-foreground">
+              <Typography className="text-lg font-medium text-foreground">
                 {t('theme')}
-              </Text>
+              </Typography>
               <RadioGroup
                 value={activeTheme}
-                onValueChange={v => setAppTheme(v as TAppTheme)}>
+                onValueChange={v => {
+                  setAppTheme(v as TAppTheme);
+                }}>
                 {themes.map(th => (
                   <RadioGroup.Item key={th.name} value={th.name}>
                     {th.label}
@@ -118,7 +121,7 @@ export const SettingsModal = ({ref}: Props) => {
             <Surface
               className="flex-row items-center justify-between"
               variant="secondary">
-              <Text>{t('enable-locker')}</Text>
+              <Typography>{t('enable-locker')}</Typography>
               <Switch
                 isDisabled={!isSensorAvailable}
                 isSelected={locker !== 'unavailable'}

@@ -1,7 +1,6 @@
-import {MaterialDesignIcons} from 'components/icons';
-import {SafeAreaView} from 'components/safeareaview';
-import {Text} from 'components/text';
+import {MaterialDesignIcons, SafeAreaView} from 'components/uniwind';
 import {Button} from 'heroui-native/button';
+import {Typography} from 'heroui-native/text';
 import {useTranslation} from 'react-i18next';
 import {ScrollView} from 'react-native';
 import RNRestart from 'react-native-restart';
@@ -23,13 +22,13 @@ const ErrorBoundaryScreen: ErrorBoundaryProps['FallbackComponent'] = ({
         name="alert"
         size={100}
       />
-      <Text className="text-center text-lg font-bold">
+      <Typography className="text-center text-lg font-bold">
         {t('unexpected-error')}
-      </Text>
+      </Typography>
       <ScrollView
         className="grow-0 rounded-xl border border-red-500"
         contentContainerClassName="p-3">
-        <Text>{error.toString()}</Text>
+        <Typography>{error.toString()}</Typography>
       </ScrollView>
       <Button variant="primary" onPress={restart}>
         {t('reopen-app')}

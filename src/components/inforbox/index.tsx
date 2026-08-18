@@ -1,7 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {Chip} from 'heroui-native/chip';
+import {Typography} from 'heroui-native/text';
 import {View} from 'react-native';
-import {Text} from '../text';
 
 type Props = {
   post: TPost;
@@ -13,7 +13,7 @@ const InforBox = ({post}: Props) => {
   return (
     <View className="flex-row items-center pt-3">
       <View className="items-center px-3">
-        <Text>{post.time}</Text>
+        <Typography>{post.time}</Typography>
       </View>
       <View className="flex-1 flex-row flex-wrap items-center gap-3">
         {[...post.cats, ...post.tags].map(c => {

@@ -1,7 +1,6 @@
 import API, {LINKS} from 'api';
-import {MaterialDesignIcons} from 'components/icons';
 import PostList from 'components/postlist';
-import {Text} from 'components/text';
+import {MaterialDesignIcons} from 'components/uniwind';
 import {Button} from 'heroui-native/button';
 import {Chip} from 'heroui-native/chip';
 import {Input} from 'heroui-native/input';
@@ -107,7 +106,7 @@ const SearchScreen = () => {
               size="sm"
               variant="danger"
               onPress={onDeleteAllSearchKeyword}>
-              <Text>{t('delete-all')}</Text>
+              {t('delete-all')}
             </Button>
           );
         }

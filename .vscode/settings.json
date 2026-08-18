@@ -6,47 +6,11 @@
   "editor.formatOnPaste": true,
   "files.eol": "\n",
   "files.insertFinalNewline": true,
-  "todo-tree.general.tags": [
-    "BUG",
-    "HACK",
-    "FIXME",
-    "TODO",
-    "XXX",
-    "START:",
-    "END:"
-  ],
-  "todo-tree.general.tagGroups": {
-    "PROJECT": ["START:", "END:"]
-  },
-  "todo-tree.highlights.customHighlight": {
-    "PROJECT": {
-      "background": "#00ffff",
-      "type": "text-and-comment",
-      "hideFromTree": true
-    },
-    "TODO": {
-      "icon": "check",
-      "type": "line",
-      "background": "#008000"
-    },
-    "FIXME": {
-      "icon": "tools",
-      "background": "#ffff00",
-      "iconColour": "#ffff00"
-    }
-  },
-  "todo-tree.highlights.defaultHighlight": {
-    "icon": "dash",
-    "type": "text",
-    "opacity": 50,
-    "foreground": "#fff",
-    "background": "#0000ff",
-    "iconColour": "#008000"
-  },
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": "explicit"
+    "source.fixAll.prettier": "always",
+    "source.fixAll.eslint": "always"
   },
-  "typescript.tsdk": "node_modules/typescript/lib",
+  "js/ts.tsdk.path": "node_modules/typescript/lib",
   "i18n-ally.localesPaths": ["src/locales"],
   "i18n-ally.keystyle": "nested",
   "i18n-ally.sortKeys": true,
